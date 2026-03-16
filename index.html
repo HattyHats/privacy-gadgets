@@ -3,433 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PrivacyGadgets Hub – Vetted Privacy Tools by HattyHats</title>
+<title>Privacy-Gadgets Hub – Vetted Privacy Tools by HattyHats</title>
 <meta name="description" content="Curated directory of the best open-source privacy gadgets and tools for 2026. Vetted by HattyHats. Crypto, Web3, AI privacy essentials.">
-
-<!-- AdSense Auto ads code -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6374033238930580"
-     crossorigin="anonymous"></script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6374033238930580" crossorigin="anonymous"></script>
 <style>
-/* =============================================
-   RESET & BASE
-   ============================================= */
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Segoe UI',sans-serif;
-  background:#050508;
-  color:#f0f0f0;
-  position:relative;
-  overflow-x:hidden;
-}
+body{font-family:'Segoe UI',sans-serif;background:#050508;color:#f0f0f0;overflow-x:hidden}
 
-/* =============================================
-   BACKGROUND: animated gold/red glow
-   ============================================= */
+/* ── SPLASH ── */
+#splash{
+  position:fixed;inset:0;background:#000;z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+}
+#splash-scanline{
+  position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.2) 2px,rgba(0,0,0,.2) 4px);
+}
+#splash-title{
+  font-size:clamp(2.8rem,8vw,6rem);font-weight:900;color:#f0a500;letter-spacing:4px;
+  text-align:center;opacity:0;position:relative;z-index:2;
+  text-shadow:0 0 30px #f0a50080,0 0 60px #f0a50040,0 2px 4px #000;
+}
+#splash-sub{
+  font-size:clamp(.95rem,2.5vw,1.35rem);color:#ccc;letter-spacing:1px;
+  text-align:center;opacity:0;position:relative;z-index:2;max-width:580px;padding:0 20px;
+}
+#splash-credit{
+  font-size:clamp(.75rem,1.8vw,1rem);color:#888;letter-spacing:2px;
+  text-align:center;opacity:0;position:relative;z-index:2;
+}
+#splash-hatty{color:#f0a500;font-weight:700;display:inline-block;}
+#splash-enter{
+  opacity:0;position:relative;z-index:2;cursor:pointer;border:none;
+  background:linear-gradient(180deg,#f8bc20,#d08800 55%,#b07000);
+  color:#0d0d0d;padding:14px 52px;border-radius:40px;
+  font-size:1rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  box-shadow:0 4px 24px #f0a50060,0 6px 20px #00000080;
+}
+#splash-enter:hover{filter:brightness(1.15);transform:translateY(-2px)}
+#splash-enter:active{transform:translateY(1px)}
+
+/* ── BACKGROUND GLOW ── */
 body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(ellipse at top,#ff000018 0,transparent 55%),
-    radial-gradient(ellipse at bottom,#1a1a4020 0,transparent 60%),
-    radial-gradient(ellipse at 70% 40%,#f0a50008 0,transparent 50%);
-  pointer-events:none;
-  z-index:-2;
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;
+  background:radial-gradient(ellipse at top,#ff000018 0,transparent 55%),
+             radial-gradient(ellipse at bottom,#1a1a4020 0,transparent 60%);
 }
 
-/* =============================================
-   CODE RAIN
-   ============================================= */
-.code-rain{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:-1;
-  pointer-events:none;
-}
+/* ── CODE RAIN ── */
+.code-rain{position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
 .code-column{
-  position:absolute;
-  top:-120%;
-  width:2%;
-  color:#f0a500;
-  font-family:monospace;
-  font-size:12px;
-  text-shadow:0 0 8px #f0a50060;
-  white-space:pre;
-  opacity:.12;
-  animation:codeFall linear infinite;
+  position:absolute;top:-120%;width:2%;color:#f0a500;font-family:monospace;font-size:12px;
+  text-shadow:0 0 8px #f0a50060;white-space:pre;opacity:.12;animation:codeFall linear infinite;
 }
-@keyframes codeFall{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(220%);}
-}
-.code-column:nth-child(1){left:5%;animation-duration:14s;animation-delay:-3s;}
-.code-column:nth-child(2){left:18%;animation-duration:11s;animation-delay:-6s;}
-.code-column:nth-child(3){left:30%;animation-duration:16s;animation-delay:-2s;}
-.code-column:nth-child(4){left:45%;animation-duration:12s;animation-delay:-8s;}
-.code-column:nth-child(5){left:60%;animation-duration:15s;animation-delay:-5s;}
-.code-column:nth-child(6){left:74%;animation-duration:10s;animation-delay:-7s;}
-.code-column:nth-child(7){left:87%;animation-duration:13s;animation-delay:-1s;}
+@keyframes codeFall{0%{transform:translateY(0)}100%{transform:translateY(220%)}}
+.code-column:nth-child(1){left:5%;animation-duration:14s;animation-delay:-3s}
+.code-column:nth-child(2){left:18%;animation-duration:11s;animation-delay:-6s}
+.code-column:nth-child(3){left:30%;animation-duration:16s;animation-delay:-2s}
+.code-column:nth-child(4){left:45%;animation-duration:12s;animation-delay:-8s}
+.code-column:nth-child(5){left:60%;animation-duration:15s;animation-delay:-5s}
+.code-column:nth-child(6){left:74%;animation-duration:10s;animation-delay:-7s}
+.code-column:nth-child(7){left:87%;animation-duration:13s;animation-delay:-1s}
 
-/* =============================================
-   HEADER & NAV
-   ============================================= */
+/* ── HEADER ── */
 header{
-  background:linear-gradient(180deg,#0e0e1a 0%,#0a0a14 100%);
-  padding:14px 28px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #f0a50055;
-  position:sticky;
-  top:0;
-  z-index:100;
-  box-shadow:
-    0 1px 0 #f0a50020,
-    0 4px 24px #00000090,
-    0 8px 48px #00000060,
-    inset 0 1px 0 #ffffff0a;
+  background:linear-gradient(180deg,#0e0e1a,#0a0a14);padding:14px 28px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #f0a50055;position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 24px #00000090,inset 0 1px 0 #ffffff0a;
 }
-header h1{
-  font-size:1.35rem;
-  color:#f0a500;
-  letter-spacing:2px;
-  text-shadow:0 0 18px #f0a50060,0 2px 4px #000;
-  white-space:nowrap;
+.logo-text{
+  font-size:1.35rem;font-weight:700;color:#f0a500;letter-spacing:2px;
+  text-shadow:0 0 18px #f0a50060,0 2px 4px #000;white-space:nowrap;cursor:default;
 }
-header h1 span{color:#fff}
-
-nav{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-/* ---- 3D NAV BUTTONS ---- */
+.logo-text span{color:#fff}
+nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 nav a{
-  color:#e8e8e8;
-  text-decoration:none;
-  font-size:.8rem;
-  font-weight:600;
-  letter-spacing:.4px;
-  padding:7px 15px;
-  border-radius:8px;
-  white-space:nowrap;
-  background:linear-gradient(180deg,#2a2a40 0%,#16162a 60%,#0f0f20 100%);
+  color:#e8e8e8;text-decoration:none;font-size:.8rem;font-weight:600;
+  padding:7px 15px;border-radius:8px;white-space:nowrap;
+  background:linear-gradient(180deg,#2a2a40,#16162a 60%,#0f0f20);
   border:1px solid #3a3a58;
-  box-shadow:
-    0 1px 0 #ffffff14 inset,
-    0 -1px 0 #00000060 inset,
-    0 3px 8px #00000080,
-    0 1px 2px #000000a0;
-  transition:all .15s ease;
-  position:relative;
-  top:0;
+  box-shadow:0 1px 0 #ffffff14 inset,0 3px 8px #00000080;
+  transition:all .15s ease;position:relative;top:0;
 }
 nav a:hover{
-  color:#f0a500;
-  background:linear-gradient(180deg,#2e2e4e 0%,#1a1a32 60%,#121228 100%);
-  border-color:#f0a50066;
-  box-shadow:
-    0 1px 0 #ffffff18 inset,
-    0 -1px 0 #00000060 inset,
-    0 0 14px #f0a50030,
-    0 4px 12px #00000090,
-    0 1px 3px #000000b0;
-  top:-1px;
-}
-nav a:active{
-  top:1px;
-  box-shadow:
-    0 1px 0 #00000040 inset,
-    0 -1px 0 #ffffff08 inset,
-    0 1px 4px #00000080,
-    0 0 8px #f0a50020;
-  background:linear-gradient(180deg,#0f0f20 0%,#1a1a30 100%);
+  color:#f0a500;border-color:#f0a50066;top:-1px;
+  box-shadow:0 1px 0 #ffffff18 inset,0 0 14px #f0a50030,0 4px 12px #00000090;
 }
 
-/* =============================================
-   HERO
-   ============================================= */
+/* ── HERO ── */
 .hero{
-  background:linear-gradient(135deg,rgba(26,26,46,.95),rgba(22,33,62,.95),rgba(15,52,96,.90));
-  text-align:center;
-  padding:80px 28px;
-  position:relative;
-  box-shadow:
-    0 8px 40px #00000090,
-    0 1px 0 #f0a50020,
-    inset 0 -1px 0 #f0a50015;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(26,26,46,.98),rgba(22,33,62,.98),rgba(15,52,96,.95));
+  text-align:center;padding:80px 28px;position:relative;overflow:hidden;
 }
 .hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(#ffffff04 1px,transparent 1px),
-    linear-gradient(90deg,#ffffff04 1px,transparent 1px);
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);
   background-size:40px 40px;
-  pointer-events:none;
 }
-.hero-icon{
-  font-size:3.5rem;
-  margin-bottom:18px;
-  position:relative;z-index:1;
-  filter:drop-shadow(0 0 20px #f0a50060);
+.hero-lock{position:relative;z-index:2;margin-bottom:36px;opacity:0;animation:lockReveal 2s ease .3s forwards}
+.hero-lock img{
+  width:clamp(180px,28vw,320px);height:auto;
+  filter:drop-shadow(0 0 40px #f0a50080) drop-shadow(0 0 80px #f0a50050) brightness(1.1);
+  animation:lockGlow 3s ease-in-out 2.5s infinite alternate;
 }
-.hero h2{
-  font-size:2.4rem;
-  margin-bottom:14px;
-  color:#f0a500;
-  text-shadow:0 0 30px #f0a50060,0 2px 8px #000;
-  position:relative;z-index:1;
-}
-.hero p{
-  font-size:1.05rem;
-  color:#ccc;
-  max-width:620px;
-  margin:0 auto 28px;
-  line-height:1.75;
-  position:relative;z-index:1;
-}
+@keyframes lockReveal{0%{opacity:0;transform:scale(.6)}60%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+@keyframes lockGlow{0%{filter:drop-shadow(0 0 30px #f0a50060) drop-shadow(0 0 60px #f0a50030) brightness(1)}100%{filter:drop-shadow(0 0 70px #f0a500a0) drop-shadow(0 0 130px #f0a50060) brightness(1.15)}}
+.hero-text-wrap{position:relative;z-index:2;opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}
+.hero-text-wrap.visible{opacity:1;transform:translateY(0)}
+.hero h2{font-size:2.4rem;margin-bottom:14px;color:#f0a500;text-shadow:0 0 30px #f0a50060,0 2px 8px #000}
+.hero p{font-size:1.05rem;color:#ccc;max-width:620px;margin:0 auto 28px;line-height:1.75}
 .hero a.cta{
-  position:relative;z-index:1;
-  display:inline-block;
-  background:linear-gradient(180deg,#f8bc20 0%,#d08800 55%,#b07000 100%);
-  color:#0d0d0d;
-  padding:13px 34px;
-  border-radius:40px;
-  text-decoration:none;
-  font-weight:700;
-  font-size:.97rem;
-  letter-spacing:.3px;
-  border:1px solid #c08000;
-  box-shadow:
-    0 1px 0 #ffe08060 inset,
-    0 -2px 0 #80500060 inset,
-    0 4px 20px #f0a50050,
-    0 6px 16px #00000080;
-  transition:all .15s ease;
+  display:inline-block;background:linear-gradient(180deg,#f8bc20,#d08800 55%,#b07000);
+  color:#0d0d0d;padding:13px 34px;border-radius:40px;text-decoration:none;
+  font-weight:700;font-size:.97rem;border:1px solid #c08000;
+  box-shadow:0 1px 0 #ffe08060 inset,0 4px 20px #f0a50050;transition:all .15s ease;
 }
-.hero a.cta:hover{
-  background:linear-gradient(180deg,#ffd030 0%,#e09800 55%,#c08000 100%);
-  box-shadow:
-    0 1px 0 #ffe08080 inset,
-    0 -2px 0 #80500080 inset,
-    0 6px 28px #f0a50070,
-    0 8px 20px #00000090;
-  transform:translateY(-2px);
+.hero a.cta:hover{transform:translateY(-2px);box-shadow:0 1px 0 #ffe08080 inset,0 6px 28px #f0a50070}
+.scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:.5;animation:scrollBob 1.8s ease-in-out infinite;font-size:.72rem;color:#f0a500;letter-spacing:1px;
 }
-.hero a.cta:active{transform:translateY(1px)}
+@keyframes scrollBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 
-/* =============================================
-   CONTAINERS & SECTION TITLES
-   ============================================= */
+/* ── CONTAINERS ── */
 .container{max-width:1100px;margin:0 auto;padding:52px 20px}
+.sec-title{font-size:1.5rem;color:#f0a500;margin-bottom:24px;text-shadow:0 0 20px #f0a50040;text-align:center;position:relative}
+.sec-title::after{content:"";display:block;width:60px;height:3px;background:linear-gradient(90deg,#f0a500,transparent);margin:8px auto 0;border-radius:2px;box-shadow:0 0 10px #f0a50060}
+.sec-desc{text-align:center;color:#999;max-width:680px;margin:0 auto 36px;line-height:1.75;font-size:.95rem}
 
-.sec-title{
-  font-size:1.5rem;
-  color:#f0a500;
-  margin-bottom:24px;
-  padding-left:14px;
-  border-left:none;
-  text-shadow:0 0 20px #f0a50040;
-  position:relative;
-  text-align:center;
-  padding-left:0;
-}
-.sec-title::after{
-  content:"";
-  display:block;
-  width:60px;
-  height:3px;
-  background:linear-gradient(90deg,#f0a500,#f0a50000);
-  margin:8px auto 0;
-  border-radius:2px;
-  box-shadow:0 0 10px #f0a50060;
-}
-
-.sec-desc{
-  text-align:center;
-  color:#999;
-  max-width:680px;
-  margin:0 auto 36px;
-  line-height:1.75;
-  font-size:.95rem;
-}
-
-/* =============================================
-   PROJECTS SECTION
-   ============================================= */
-.projects-section{
-  background:linear-gradient(180deg,#0c0c1a,#080812);
-  border-top:1px solid #f0a50020;
-  border-bottom:1px solid #f0a50020;
-  box-shadow:inset 0 1px 0 #f0a50010,inset 0 -1px 0 #f0a50010;
-}
-.project-links{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:12px;
-  margin-top:8px;
-}
+/* ── PROJECTS ── */
+.projects-section{background:linear-gradient(180deg,#0c0c1a,#080812);border-top:1px solid #f0a50020;border-bottom:1px solid #f0a50020}
+.project-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:8px}
 .project-links a{
-  background:linear-gradient(180deg,#222238,#14142a);
-  border:1px solid #2e2e50;
-  color:#e0e0e0;
-  padding:9px 22px;
-  border-radius:30px;
-  text-decoration:none;
-  font-size:.86rem;
-  font-weight:600;
-  letter-spacing:.3px;
-  box-shadow:
-    0 1px 0 #ffffff0c inset,
-    0 3px 10px #00000060,
-    0 1px 3px #000000a0;
-  transition:all .15s ease;
+  background:linear-gradient(180deg,#222238,#14142a);border:1px solid #2e2e50;color:#e0e0e0;
+  padding:9px 22px;border-radius:30px;text-decoration:none;font-size:.86rem;font-weight:600;
+  box-shadow:0 3px 10px #00000060;transition:all .15s ease;
 }
-.project-links a:hover{
-  background:linear-gradient(180deg,#f0a500,#c07800);
-  color:#0d0d0d;
-  border-color:#f0a500;
-  box-shadow:
-    0 1px 0 #ffffff30 inset,
-    0 0 16px #f0a50040,
-    0 4px 14px #00000080;
-  transform:translateY(-2px);
-}
+.project-links a:hover{background:linear-gradient(180deg,#f0a500,#c07800);color:#0d0d0d;border-color:#f0a500;transform:translateY(-2px)}
 
-/* =============================================
-   FILTER BUTTONS
-   ============================================= */
-.filters{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-bottom:36px;
-}
+/* ── FILTERS ── */
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
 .filter-btn{
-  background:linear-gradient(180deg,#1e1e32,#12121e);
-  color:#aaa;
-  border:1px solid #2e2e4a;
-  padding:7px 18px;
-  border-radius:25px;
-  cursor:pointer;
-  font-size:.8rem;
-  font-weight:600;
-  letter-spacing:.3px;
-  box-shadow:0 2px 6px #00000060;
-  transition:all .15s ease;
+  background:linear-gradient(180deg,#1e1e32,#12121e);color:#aaa;border:1px solid #2e2e4a;
+  padding:7px 18px;border-radius:25px;cursor:pointer;font-size:.8rem;font-weight:600;
+  box-shadow:0 2px 6px #00000060;transition:all .15s ease;
 }
-.filter-btn.active,
-.filter-btn:hover{
-  background:linear-gradient(180deg,#f0a500,#c07800);
-  color:#0d0d0d;
-  border-color:#f0a500;
-  box-shadow:0 0 14px #f0a50040,0 3px 8px #00000060;
-}
+.filter-btn.active,.filter-btn:hover{background:linear-gradient(180deg,#f0a500,#c07800);color:#0d0d0d;border-color:#f0a500}
 
-/* =============================================
-   CATEGORY HEADERS
-   ============================================= */
-.cat-header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin:42px 0 18px;
-}
-.cat-header h3{
-  font-size:1.05rem;
-  color:#f0a500;
-  font-weight:700;
-  letter-spacing:.5px;
-  text-transform:uppercase;
-  text-shadow:0 0 12px #f0a50040;
-}
-.cat-header::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background:linear-gradient(90deg,#f0a50030,transparent);
-}
+/* ── CAT HEADERS ── */
+.cat-header{display:flex;align-items:center;gap:12px;margin:42px 0 18px}
+.cat-header h3{font-size:1.05rem;color:#f0a500;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-shadow:0 0 12px #f0a50040}
+.cat-header::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#f0a50030,transparent)}
 .cat-icon{font-size:1.2rem}
 
-/* =============================================
-   TOOL CARDS GRID
-   ============================================= */
-.tools-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-}
-
+/* ── TOOL CARDS ── */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .tool-card{
-  background:linear-gradient(145deg,#1e1e34,#141426);
-  border-radius:14px;
-  padding:20px;
-  border:1px solid #2e2e50;
-  box-shadow:
-    0 1px 0 #ffffff08 inset,
-    0 -1px 0 #00000060 inset,
-    0 4px 18px #00000070,
-    0 8px 28px #00000050;
+  background:linear-gradient(145deg,#1e1e34,#141426);border-radius:14px;padding:20px;
+  border:1px solid #2e2e50;box-shadow:0 4px 18px #00000070;
   transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-  overflow:hidden;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
 }
-.tool-card::before{
-  content:"";
-  position:absolute;
-  top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,#ffffff14,transparent);
-}
-.tool-card:hover{
-  transform:translateY(-5px);
-  border-color:#f0a50050;
-  box-shadow:
-    0 1px 0 #ffffff10 inset,
-    0 -1px 0 #00000060 inset,
-    0 0 20px #f0a50015,
-    0 12px 36px #00000080;
-}
-
-.tool-card h4{
-  font-size:.97rem;
-  color:#f0f0f0;
-  margin-bottom:6px;
-  line-height:1.3;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.tool-tagline{
-  font-size:.84rem;
-  color:#999;
-  line-height:1.6;
-  margin-bottom:14px;
-  flex:1;
-}
-.badge{
-  display:inline-block;
-  font-size:.6rem;
-  font-weight:700;
-  padding:2px 8px;
-  border-radius:999px;
-  border:1px solid #f0a50060;
-  color:#f0a500;
-  letter-spacing:.3px;
-  text-transform:uppercase;
-  background:#f0a50012;
-}
+.tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#ffffff14,transparent)}
+.tool-card:hover{transform:translateY(-5px);border-color:#f0a50050;box-shadow:0 0 20px #f0a50015,0 12px 36px #00000080}
+.tool-card h4{font-size:.97rem;color:#f0f0f0;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tool-tagline{font-size:.84rem;color:#999;line-height:1.6;margin-bottom:14px;flex:1}
+.badge{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid #f0a50060;color:#f0a500;letter-spacing:.3px;text-transform:uppercase;background:#f0a50012}
 .badge-os{border-color:#22c55e60;color:#22c55e;background:#22c55e12}
 .badge-msg{border-color:#60a5fa60;color:#60a5fa;background:#60a5fa12}
 .badge-vpn{border-color:#a78bfa60;color:#a78bfa;background:#a78bfa12}
@@ -438,132 +181,55 @@ nav a:active{
 .badge-search{border-color:#34d39960;color:#34d399;background:#34d39912}
 .badge-self{border-color:#fbbf2460;color:#fbbf24;background:#fbbf2412}
 .badge-earn{border-color:#f0a50060;color:#f0a500;background:#f0a50012}
-
-.tool-link{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  color:#f0a500;
-  text-decoration:none;
-  font-size:.82rem;
-  font-weight:700;
-  margin-top:auto;
-  transition:color .15s;
-}
+.tool-link{display:inline-flex;align-items:center;gap:5px;color:#f0a500;text-decoration:none;font-size:.82rem;font-weight:700;margin-top:auto;transition:color .15s}
 .tool-link:hover{color:#ffd050;text-shadow:0 0 10px #f0a50060}
 .tool-link::after{content:" →"}
+.aff-note{font-size:.68rem;color:#555;margin-top:6px}
 
-.aff-note{
-  font-size:.68rem;
-  color:#555;
-  margin-top:6px;
-}
-
-/* =============================================
-   AFFILIATE DISCLAIMER BANNER
-   ============================================= */
-.disclaimer{
-  background:linear-gradient(145deg,#1a1a0a,#0e0e05);
-  border:1px solid #f0a50030;
-  border-radius:10px;
-  padding:14px 20px;
-  font-size:.78rem;
-  color:#888;
-  line-height:1.6;
-  margin-bottom:36px;
-  text-align:center;
-}
+/* ── DISCLAIMER ── */
+.disclaimer{background:linear-gradient(145deg,#1a1a0a,#0e0e05);border:1px solid #f0a50030;border-radius:10px;padding:14px 20px;font-size:.78rem;color:#888;line-height:1.6;margin-bottom:36px;text-align:center}
 .disclaimer strong{color:#f0a500}
 
-/* =============================================
-   ABOUT SECTION
-   ============================================= */
-.about-section{
-  background:linear-gradient(180deg,#0c0c10,#080810);
-  border-top:1px solid #f0a50018;
-  box-shadow:inset 0 1px 0 #f0a50010;
+/* ── LOGO GLITCH ── */
+@keyframes logoGlitch{
+  0%{text-shadow:2px 0 #ff0000,-2px 0 #00ffff,0 0 18px #f0a50060;transform:translateX(-2px) skewX(-1deg)}
+  30%{text-shadow:-3px 0 #00ffff,3px 0 #ff0000,0 0 18px #f0a50060;transform:translateX(2px) skewX(1deg)}
+  60%{text-shadow:0 0 18px #f0a50060,0 2px 4px #000;transform:translateX(0) skewX(0)}
+  80%{text-shadow:3px 0 #ff00ff,-3px 0 #00ff00,0 0 18px #f0a50060;transform:translateX(-1px)}
+  100%{text-shadow:0 0 18px #f0a50060,0 2px 4px #000;transform:translateX(0) skewX(0)}
 }
-.about-inner{
-  max-width:720px;
-  margin:0 auto;
-  text-align:center;
-}
-.about-inner .hat{
-  font-size:3.5rem;
-  margin-bottom:18px;
-  filter:drop-shadow(0 0 16px #f0a50040);
-}
-.about-inner h2{
-  font-size:1.6rem;
-  color:#f0a500;
-  margin-bottom:14px;
-}
-.about-inner p{
-  color:#999;
-  line-height:1.82;
-  margin-bottom:12px;
-  font-size:.95rem;
-}
-.about-links{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-.about-links a{
-  color:#f0a500;
-  text-decoration:none;
-  font-size:.85rem;
-  font-weight:600;
-  padding:6px 16px;
-  border:1px solid #f0a50040;
-  border-radius:20px;
-  transition:all .15s;
-}
-.about-links a:hover{
-  background:#f0a50015;
-  border-color:#f0a500;
-  text-shadow:0 0 10px #f0a50060;
-}
+.logo-text.glitching{animation:logoGlitch .3s steps(1) 0s 4}
 
-/* =============================================
-   FOOTER
-   ============================================= */
-footer{
-  background:#050508;
-  border-top:1px solid #f0a50030;
-  padding:28px;
-  text-align:center;
-  color:#444;
-  font-size:.8rem;
-  box-shadow:0 -4px 24px #00000060,inset 0 1px 0 #f0a50018;
-}
-footer a{
-  color:#f0a500;
-  text-decoration:none;
-  margin:0 7px;
-  transition:color .15s;
-}
-footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
+/* ── ABOUT ── */
+.about-section{background:linear-gradient(180deg,#0c0c10,#080810);border-top:1px solid #f0a50018}
+.about-inner{max-width:720px;margin:0 auto;text-align:center}
+.about-inner .hat{font-size:3.5rem;margin-bottom:18px;filter:drop-shadow(0 0 16px #f0a50040)}
+.about-inner h2{font-size:1.6rem;color:#f0a500;margin-bottom:14px}
+.about-inner p{color:#999;line-height:1.82;margin-bottom:12px;font-size:.95rem}
+.about-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+.about-links a{color:#f0a500;text-decoration:none;font-size:.85rem;font-weight:600;padding:6px 16px;border:1px solid #f0a50040;border-radius:20px;transition:all .15s}
+.about-links a:hover{background:#f0a50015;border-color:#f0a500}
 
-/* =============================================
-   RESPONSIVE
-   ============================================= */
-@media(max-width:820px){
-  header{flex-direction:column;gap:14px;padding:16px}
-  nav{justify-content:center;gap:7px}
-  nav a{font-size:.75rem;padding:6px 11px}
-  .hero h2{font-size:1.8rem}
-}
-@media(max-width:520px){
-  .hero h2{font-size:1.5rem}
-  .tools-grid{grid-template-columns:1fr}
-  .project-links a{font-size:.8rem;padding:8px 16px}
-}
+/* ── FOOTER ── */
+footer{background:#050508;border-top:1px solid #f0a50030;padding:28px;text-align:center;color:#444;font-size:.8rem;box-shadow:0 -4px 24px #00000060}
+footer a{color:#f0a500;text-decoration:none;margin:0 7px;transition:color .15s}
+footer a:hover{color:#ffd050}
+
+/* ── RESPONSIVE ── */
+@media(max-width:820px){header{flex-direction:column;gap:14px;padding:16px}nav{justify-content:center;gap:7px}nav a{font-size:.75rem;padding:6px 11px}.hero h2{font-size:1.8rem}}
+@media(max-width:520px){.hero h2{font-size:1.5rem}.tools-grid{grid-template-columns:1fr}.project-links a{font-size:.8rem;padding:8px 16px}}
 </style>
 </head>
 <body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div id="splash-scanline"></div>
+  <div id="splash-title">Privacy-Gadgets</div>
+  <div id="splash-sub">Privacy Is a Right, Not a Feature.</div>
+  <div id="splash-credit">Created by <span id="splash-hatty">HattyHats</span></div>
+  <button id="splash-enter">[ ENTER ]</button>
+</div>
 
 <!-- CODE RAIN -->
 <div class="code-rain" aria-hidden="true">
@@ -599,7 +265,7 @@ footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
 
 <!-- HEADER -->
 <header>
-  <h1>Privacy<span>Gadgets</span> Hub</h1>
+  <div class="logo-text" id="headerLogo">Privacy-<span>Gadgets</span></div>
   <nav>
     <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener">Main Site</a>
     <a href="https://hattyhats.github.io/voi-maze/" target="_blank" rel="noopener">Voi Maze</a>
@@ -610,13 +276,21 @@ footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-icon">🔒</div>
-  <h2>Privacy Is a Right, Not a Feature.</h2>
-  <p>Vetted open-source privacy tools and gadgets for crypto, Web3, AI, and everyday digital life. Curated by HattyHats — no hype, no data harvesting, just tools that actually protect you.</p>
-  <a href="#tools" class="cta">Explore the Tools</a>
+  <div class="hero-lock">
+    <img src="lock.png" alt="Privacy Lock" />
+  </div>
+  <div class="hero-text-wrap" id="heroText">
+    <h2>Privacy Is a Right, Not a Feature.</h2>
+    <p>Vetted open-source privacy tools and gadgets for crypto, Web3, AI, and everyday digital life. Curated by HattyHats — no hype, no data harvesting, just tools that actually protect you.</p>
+    <a href="#tools" class="cta">Explore the Tools</a>
+  </div>
+  <div class="scroll-hint">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#f0a500"><path d="M12 16l-6-6h12z"/></svg>
+    SCROLL
+  </div>
 </section>
 
-<!-- PROJECTS SECTION -->
+<!-- PROJECTS -->
 <section class="projects-section" id="projects">
   <div class="container" style="padding-top:44px;padding-bottom:44px">
     <h2 class="sec-title">More From HattyHats</h2>
@@ -630,19 +304,12 @@ footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
   </div>
 </section>
 
-<!-- TOOLS SECTION -->
+<!-- TOOLS -->
 <div class="container" id="tools">
   <h2 class="sec-title">Privacy Gadgets & Tools</h2>
-  <p class="sec-desc">
-    Every tool below is open-source or community-driven, privacy-respecting, and genuinely useful.
-    Some links are affiliate links — they support the channel at no extra cost to you.
-  </p>
+  <p class="sec-desc">Every tool below is open-source or community-driven, privacy-respecting, and genuinely useful. Some links are affiliate links — they support the channel at no extra cost to you.</p>
+  <div class="disclaimer"><strong>Affiliate Disclosure:</strong> Links marked with "aff" may earn a small commission if you purchase through them. This never affects which tools get listed — only tools HattyHats actually uses or trusts make the cut.</div>
 
-  <div class="disclaimer">
-    <strong>Affiliate Disclosure:</strong> Links marked with "aff" may earn a small commission if you purchase through them. This never affects which tools get listed — only tools HattyHats actually uses or trusts make the cut.
-  </div>
-
-  <!-- FILTERS -->
   <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="hardware">Hardware</button>
@@ -656,293 +323,234 @@ footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
     <button class="filter-btn" data-filter="crypto">Crypto / Web3</button>
   </div>
 
-  <!-- ALL TOOLS -->
   <div id="tools-grid">
 
-    <!-- ── HARDWARE ── -->
     <div class="cat-header" data-cat="hardware"><span class="cat-icon">🔑</span><h3>Hardware Security</h3></div>
     <div class="tools-grid" data-cat="hardware">
-
       <div class="tool-card" data-categories="hardware">
         <h4>YubiKey 5 NFC <span class="badge">2FA key</span></h4>
         <p class="tool-tagline">Phishing-resistant hardware security key for your most important accounts. Just tap or plug in — stops account takeovers cold.</p>
         <a class="tool-link" href="https://amzn.to/4l4LK7i" target="_blank" rel="noopener">Shop on Amazon</a>
         <span class="aff-note">aff link</span>
       </div>
-
       <div class="tool-card" data-categories="hardware crypto">
         <h4>Ledger Hardware Wallet <span class="badge">cold storage</span></h4>
         <p class="tool-tagline">The most widely trusted hardware crypto wallet. Keep your private keys offline and away from any browser or internet-connected device.</p>
-        <a class="tool-link" href="https://www.ledger.com/" target="_blank" rel="noopener">Visit Ledger</a>
+        <a class="tool-link" href="https://amzn.to/4dw4Lxw" target="_blank" rel="noopener">Shop on Amazon</a>
+        <span class="aff-note">aff link</span>
       </div>
-
       <div class="tool-card" data-categories="hardware">
         <h4>Privacy Screen Protector <span class="badge">visual privacy</span></h4>
         <p class="tool-tagline">Physical screen filters that block shoulder surfing — anyone beside you sees nothing. Essential for public places and travel.</p>
-        <a class="tool-link" href="https://amzn.to/privacy-screen" target="_blank" rel="noopener">Browse on Amazon</a>
+        <a class="tool-link" href="https://amzn.to/4sfcKne" target="_blank" rel="noopener">Browse on Amazon</a>
         <span class="aff-note">aff link</span>
       </div>
-
     </div>
 
-    <!-- ── BROWSERS ── -->
     <div class="cat-header" data-cat="browser"><span class="cat-icon">🌐</span><h3>Privacy Browsers</h3></div>
     <div class="tools-grid" data-cat="browser">
-
       <div class="tool-card" data-categories="browser">
-        <h4>Brave Browser <span class="badge browser">browser</span></h4>
+        <h4>Brave Browser <span class="badge badge-browser">browser</span></h4>
         <p class="tool-tagline">Chromium-based browser with built-in ad and tracker blocking, Tor integration, and optional crypto rewards. Open source, fast, and no Google telemetry.</p>
         <a class="tool-link" href="https://brave.com/" target="_blank" rel="noopener">Get Brave</a>
       </div>
-
       <div class="tool-card" data-categories="browser">
-        <h4>Firefox <span class="badge browser">browser</span></h4>
+        <h4>Firefox <span class="badge badge-browser">browser</span></h4>
         <p class="tool-tagline">The gold-standard open-source browser from Mozilla. Hardened with uBlock Origin and privacy-focused settings it's one of the most configurable options available.</p>
         <a class="tool-link" href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener">Get Firefox</a>
       </div>
-
       <div class="tool-card" data-categories="browser">
-        <h4>Tor Browser <span class="badge browser">browser</span></h4>
+        <h4>Tor Browser <span class="badge badge-browser">browser</span></h4>
         <p class="tool-tagline">Routes your traffic through the Tor anonymity network, masking your IP and location. Best option when maximum anonymity is required, not just privacy.</p>
         <a class="tool-link" href="https://www.torproject.org/" target="_blank" rel="noopener">Get Tor Browser</a>
       </div>
-
       <div class="tool-card" data-categories="browser">
-        <h4>LibreWolf <span class="badge browser">browser</span></h4>
+        <h4>LibreWolf <span class="badge badge-browser">browser</span></h4>
         <p class="tool-tagline">A hardened Firefox fork with telemetry stripped out, strict privacy defaults, and uBlock Origin pre-installed. Zero compromise out of the box.</p>
         <a class="tool-link" href="https://librewolf.net/" target="_blank" rel="noopener">Get LibreWolf</a>
       </div>
-
     </div>
 
-    <!-- ── SEARCH ── -->
     <div class="cat-header" data-cat="search"><span class="cat-icon">🔍</span><h3>Private Search Engines</h3></div>
     <div class="tools-grid" data-cat="search">
-
       <div class="tool-card" data-categories="search">
-        <h4>DuckDuckGo <span class="badge search">search</span></h4>
+        <h4>DuckDuckGo <span class="badge badge-search">search</span></h4>
         <p class="tool-tagline">No tracking, no personalized profiles, no filter bubbles. The most widely adopted private search engine — easy Google replacement for everyday use.</p>
         <a class="tool-link" href="https://duckduckgo.com/" target="_blank" rel="noopener">Use DuckDuckGo</a>
       </div>
-
       <div class="tool-card" data-categories="search">
-        <h4>Brave Search <span class="badge search">search</span></h4>
-        <p class="tool-tagline">Independent search index (not just a Google/Bing proxy) built by the Brave team. Private by default, no tracking, growing fast in result quality.</p>
+        <h4>Brave Search <span class="badge badge-search">search</span></h4>
+        <p class="tool-tagline">Independent search index built by the Brave team. Private by default, no tracking, growing fast in result quality.</p>
         <a class="tool-link" href="https://search.brave.com/" target="_blank" rel="noopener">Use Brave Search</a>
       </div>
-
       <div class="tool-card" data-categories="search">
-        <h4>SearXNG <span class="badge search">search</span></h4>
+        <h4>SearXNG <span class="badge badge-search">search</span></h4>
         <p class="tool-tagline">A fully open-source, self-hostable metasearch engine that aggregates results from dozens of sources. Run your own instance for complete control.</p>
         <a class="tool-link" href="https://github.com/searxng/searxng" target="_blank" rel="noopener">View on GitHub</a>
       </div>
-
       <div class="tool-card" data-categories="search">
-        <h4>Kagi <span class="badge search">search</span></h4>
-        <p class="tool-tagline">Subscription-based search with no ads and no data collection. Exceptional result quality and customization — paid model means you are the customer, not the product.</p>
+        <h4>Kagi <span class="badge badge-search">search</span></h4>
+        <p class="tool-tagline">Subscription-based search with no ads and no data collection. Exceptional result quality — paid model means you are the customer, not the product.</p>
         <a class="tool-link" href="https://kagi.com/" target="_blank" rel="noopener">Try Kagi</a>
       </div>
-
     </div>
 
-    <!-- ── MESSAGING ── -->
     <div class="cat-header" data-cat="messaging"><span class="cat-icon">💬</span><h3>Encrypted Messaging</h3></div>
     <div class="tools-grid" data-cat="messaging">
-
       <div class="tool-card" data-categories="messaging">
-        <h4>Signal <span class="badge msg">messaging</span></h4>
+        <h4>Signal <span class="badge badge-msg">messaging</span></h4>
         <p class="tool-tagline">End-to-end encrypted messaging and calls, developed by a non-profit. Open source, minimal metadata, and the gold standard for private communication.</p>
         <a class="tool-link" href="https://signal.org/" target="_blank" rel="noopener">Get Signal</a>
       </div>
-
       <div class="tool-card" data-categories="messaging">
-        <h4>Element (Matrix) <span class="badge msg">messaging</span></h4>
+        <h4>Element (Matrix) <span class="badge badge-msg">messaging</span></h4>
         <p class="tool-tagline">Decentralized, federated messaging on the open Matrix protocol. Self-host your own server or join a public one — no single company controls your data.</p>
         <a class="tool-link" href="https://element.io/" target="_blank" rel="noopener">Get Element</a>
       </div>
-
       <div class="tool-card" data-categories="messaging">
-        <h4>Session <span class="badge msg">messaging</span></h4>
+        <h4>Session <span class="badge badge-msg">messaging</span></h4>
         <p class="tool-tagline">No phone number required, no central servers, built on a decentralized network. Fully anonymous accounts and onion-routing for metadata privacy.</p>
         <a class="tool-link" href="https://getsession.org/" target="_blank" rel="noopener">Get Session</a>
       </div>
-
       <div class="tool-card" data-categories="messaging">
-        <h4>Briar <span class="badge msg">messaging</span></h4>
+        <h4>Briar <span class="badge badge-msg">messaging</span></h4>
         <p class="tool-tagline">Peer-to-peer encrypted messaging that works without internet via Bluetooth or WiFi. Built for activists and journalists operating in hostile environments.</p>
         <a class="tool-link" href="https://briarproject.org/" target="_blank" rel="noopener">Get Briar</a>
       </div>
-
     </div>
 
-    <!-- ── EMAIL ── -->
     <div class="cat-header" data-cat="email"><span class="cat-icon">✉️</span><h3>Private Email</h3></div>
     <div class="tools-grid" data-cat="email">
-
       <div class="tool-card" data-categories="email">
         <h4>Proton Mail <span class="badge">encrypted email</span></h4>
         <p class="tool-tagline">End-to-end encrypted email hosted in Switzerland. Zero-access architecture means even Proton can't read your inbox. Open-source client apps.</p>
         <a class="tool-link" href="https://account.proton.me/mail" target="_blank" rel="noopener">Get Proton Mail</a>
       </div>
-
       <div class="tool-card" data-categories="email">
         <h4>Tutanota <span class="badge">encrypted email</span></h4>
-        <p class="tool-tagline">Open-source encrypted email from Germany with calendar and contacts. Free tier available, no IP logging, and a strong track record of resisting legal requests.</p>
+        <p class="tool-tagline">Open-source encrypted email from Germany with calendar and contacts. Free tier available, no IP logging, strong track record of resisting legal requests.</p>
         <a class="tool-link" href="https://tuta.com/" target="_blank" rel="noopener">Get Tutanota</a>
       </div>
-
       <div class="tool-card" data-categories="email">
         <h4>SimpleLogin <span class="badge">email alias</span></h4>
         <p class="tool-tagline">Open-source email alias service — generate unique forwarding addresses for every site so your real inbox stays hidden and spam stays contained.</p>
         <a class="tool-link" href="https://simplelogin.io/" target="_blank" rel="noopener">Get SimpleLogin</a>
       </div>
-
     </div>
 
-    <!-- ── VPN / NETWORK ── -->
     <div class="cat-header" data-cat="vpn"><span class="cat-icon">🛡️</span><h3>VPN & Network Privacy</h3></div>
     <div class="tools-grid" data-cat="vpn">
-
-      <div class="tool-card" data-categories="vpn software">
-        <h4>Mysterium VPN <span class="badge vpn">decentralized VPN</span></h4>
+      <div class="tool-card" data-categories="vpn">
+        <h4>Mysterium VPN <span class="badge badge-vpn">decentralized VPN</span></h4>
         <p class="tool-tagline">Decentralized VPN powered by real residential nodes. WireGuard encryption, no-logs design, and genuine IP diversity — harder to block than centralized VPNs.</p>
         <a class="tool-link" href="https://www.mysteriumvpn.com/" target="_blank" rel="noopener">Get Mysterium VPN</a>
       </div>
-
-      <div class="tool-card" data-categories="vpn software crypto">
-        <h4>Myst Nodes <span class="badge earn">earn + privacy</span></h4>
+      <div class="tool-card" data-categories="vpn crypto">
+        <h4>Myst Nodes <span class="badge badge-earn">earn + privacy</span></h4>
         <p class="tool-tagline">Run a node in the Mysterium Network — share your bandwidth, earn crypto, and power censorship-resistant VPN infrastructure for others.</p>
         <a class="tool-link" href="https://mystnodes.co/?referral_code=CShcPZo3nIaNVELh9ACc0HbBGPUx4ADZKEsOeg4S" target="_blank" rel="noopener">Run a Myst Node</a>
         <span class="aff-note">aff link</span>
       </div>
-
       <div class="tool-card" data-categories="vpn">
-        <h4>Mullvad VPN <span class="badge vpn">VPN</span></h4>
-        <p class="tool-tagline">No-logs, no-account, cash-payment accepted. One of the most respected privacy VPNs in existence — open-source client, WireGuard & OpenVPN, audited independently.</p>
+        <h4>Mullvad VPN <span class="badge badge-vpn">VPN</span></h4>
+        <p class="tool-tagline">No-logs, no-account, cash-payment accepted. One of the most respected privacy VPNs — open-source client, WireGuard & OpenVPN, independently audited.</p>
         <a class="tool-link" href="https://mullvad.net/" target="_blank" rel="noopener">Get Mullvad</a>
       </div>
-
       <div class="tool-card" data-categories="vpn selfhost">
-        <h4>WireGuard <span class="badge vpn">open protocol</span></h4>
+        <h4>WireGuard <span class="badge badge-vpn">open protocol</span></h4>
         <p class="tool-tagline">Modern, lean, blazing-fast open-source VPN protocol. Self-host your own VPN server on a cheap VPS for complete control over your tunnel.</p>
         <a class="tool-link" href="https://www.wireguard.com/" target="_blank" rel="noopener">WireGuard.com</a>
       </div>
-
       <div class="tool-card" data-categories="vpn">
-        <h4>Pi-hole <span class="badge vpn">DNS ad blocker</span></h4>
+        <h4>Pi-hole <span class="badge badge-vpn">DNS ad blocker</span></h4>
         <p class="tool-tagline">Network-level ad and tracker blocking via your own DNS server on a Raspberry Pi or any Linux machine. Blocks ads for every device on your home network.</p>
         <a class="tool-link" href="https://pi-hole.net/" target="_blank" rel="noopener">Pi-hole.net</a>
       </div>
-
     </div>
 
-    <!-- ── PASSWORD MANAGERS ── -->
     <div class="cat-header" data-cat="password"><span class="cat-icon">🗝️</span><h3>Password Managers</h3></div>
     <div class="tools-grid" data-cat="password">
-
       <div class="tool-card" data-categories="password">
-        <h4>Bitwarden <span class="badge pw">open source</span></h4>
-        <p class="tool-tagline">Fully open-source password manager with self-hosting option. Free tier is genuinely excellent, and the code has been audited independently multiple times.</p>
+        <h4>Bitwarden <span class="badge badge-pw">open source</span></h4>
+        <p class="tool-tagline">Fully open-source password manager with self-hosting option. Free tier is genuinely excellent, audited independently multiple times.</p>
         <a class="tool-link" href="https://bitwarden.com/" target="_blank" rel="noopener">Get Bitwarden</a>
       </div>
-
       <div class="tool-card" data-categories="password selfhost">
-        <h4>KeePassXC <span class="badge pw">local storage</span></h4>
-        <p class="tool-tagline">Offline, local password manager — your vault never leaves your device or goes near a cloud server. Cross-platform, open-source, and trusted by security professionals.</p>
+        <h4>KeePassXC <span class="badge badge-pw">local storage</span></h4>
+        <p class="tool-tagline">Offline, local password manager — your vault never leaves your device. Cross-platform, open-source, and trusted by security professionals.</p>
         <a class="tool-link" href="https://keepassxc.org/" target="_blank" rel="noopener">Get KeePassXC</a>
       </div>
-
       <div class="tool-card" data-categories="password">
-        <h4>Proton Pass <span class="badge pw">encrypted</span></h4>
+        <h4>Proton Pass <span class="badge badge-pw">encrypted</span></h4>
         <p class="tool-tagline">End-to-end encrypted password manager from the Proton ecosystem. Open source, integrates with Proton Mail and VPN, with built-in email alias generation.</p>
         <a class="tool-link" href="https://proton.me/pass" target="_blank" rel="noopener">Get Proton Pass</a>
       </div>
-
     </div>
 
-    <!-- ── SELF-HOSTED / OS ── -->
     <div class="cat-header" data-cat="selfhost"><span class="cat-icon">🖥️</span><h3>Self-Hosted & Privacy OS</h3></div>
     <div class="tools-grid" data-cat="selfhost">
-
       <div class="tool-card" data-categories="selfhost">
-        <h4>Tails OS <span class="badge os">amnesic OS</span></h4>
-        <p class="tool-tagline">A live operating system you boot from USB. Routes all traffic through Tor, leaves no trace on the computer, and resets completely on every reboot.</p>
+        <h4>Tails OS <span class="badge badge-os">amnesic OS</span></h4>
+        <p class="tool-tagline">A live operating system you boot from USB. Routes all traffic through Tor, leaves no trace on the computer, resets completely on every reboot.</p>
         <a class="tool-link" href="https://tails.boum.org/" target="_blank" rel="noopener">Get Tails OS</a>
       </div>
-
       <div class="tool-card" data-categories="selfhost">
-        <h4>Qubes OS <span class="badge os">compartmentalized OS</span></h4>
+        <h4>Qubes OS <span class="badge badge-os">compartmentalized OS</span></h4>
         <p class="tool-tagline">Security-by-compartmentalization — runs every app in an isolated virtual machine so a single compromised app can't touch the rest of your system.</p>
         <a class="tool-link" href="https://www.qubes-os.org/" target="_blank" rel="noopener">Get Qubes OS</a>
       </div>
-
       <div class="tool-card" data-categories="selfhost">
-        <h4>Nextcloud <span class="badge self">self-hosted cloud</span></h4>
-        <p class="tool-tagline">Open-source self-hosted alternative to Google Drive, Docs, and Calendar. Your data, your server, fully end-to-end encryptable with no subscription fees.</p>
+        <h4>Nextcloud <span class="badge badge-self">self-hosted cloud</span></h4>
+        <p class="tool-tagline">Open-source self-hosted alternative to Google Drive, Docs, and Calendar. Your data, your server, no subscription fees.</p>
         <a class="tool-link" href="https://nextcloud.com/" target="_blank" rel="noopener">Visit Nextcloud</a>
       </div>
-
       <div class="tool-card" data-categories="selfhost">
-        <h4>Syncthing <span class="badge self">file sync</span></h4>
-        <p class="tool-tagline">Peer-to-peer file synchronization between your own devices — no cloud, no third-party server, fully encrypted in transit. Open source and audited.</p>
+        <h4>Syncthing <span class="badge badge-self">file sync</span></h4>
+        <p class="tool-tagline">Peer-to-peer file synchronization between your own devices — no cloud, no third-party server, fully encrypted in transit.</p>
         <a class="tool-link" href="https://syncthing.net/" target="_blank" rel="noopener">Get Syncthing</a>
       </div>
-
       <div class="tool-card" data-categories="selfhost">
-        <h4>GrapheneOS <span class="badge os">hardened Android</span></h4>
-        <p class="tool-tagline">Hardened Android fork for Google Pixel devices. Strips out Google surveillance layer, sandboxed app compatibility, and regular security patches well beyond standard Android.</p>
+        <h4>GrapheneOS <span class="badge badge-os">hardened Android</span></h4>
+        <p class="tool-tagline">Hardened Android fork for Google Pixel devices. Strips out Google surveillance layer, sandboxed app compatibility, regular security patches.</p>
         <a class="tool-link" href="https://grapheneos.org/" target="_blank" rel="noopener">Get GrapheneOS</a>
       </div>
-
     </div>
 
-    <!-- ── CRYPTO / WEB3 ── -->
     <div class="cat-header" data-cat="crypto"><span class="cat-icon">🔐</span><h3>Crypto & Web3 Privacy</h3></div>
     <div class="tools-grid" data-cat="crypto">
-
       <div class="tool-card" data-categories="crypto">
         <h4>Midnight Network <span class="badge">privacy chain</span></h4>
-        <p class="tool-tagline">Data-protection focused blockchain built for confidential smart contracts and privacy-preserving Web3 applications — keeps sensitive on-chain data private.</p>
+        <p class="tool-tagline">Data-protection focused blockchain built for confidential smart contracts and privacy-preserving Web3 applications.</p>
         <a class="tool-link" href="https://midnight.network/" target="_blank" rel="noopener">Midnight Network</a>
       </div>
-
       <div class="tool-card" data-categories="crypto">
         <h4>Monero (XMR) <span class="badge">privacy coin</span></h4>
-        <p class="tool-tagline">The leading privacy-focused cryptocurrency. Ring signatures and stealth addresses make every transaction untraceable by default — privacy baked into the protocol, not optional.</p>
+        <p class="tool-tagline">The leading privacy-focused cryptocurrency. Ring signatures and stealth addresses make every transaction untraceable by default.</p>
         <a class="tool-link" href="https://www.getmonero.org/" target="_blank" rel="noopener">GetMonero.org</a>
       </div>
-
       <div class="tool-card" data-categories="crypto">
         <h4>VeraCrypt <span class="badge">disk encryption</span></h4>
-        <p class="tool-tagline">Open-source disk and volume encryption. Use it to create an encrypted vault on a USB stick for cold-storing seed phrases, keys, and sensitive documents offline.</p>
+        <p class="tool-tagline">Open-source disk and volume encryption. Create an encrypted vault on a USB stick for cold-storing seed phrases and keys offline.</p>
         <a class="tool-link" href="https://www.veracrypt.fr/" target="_blank" rel="noopener">VeraCrypt.fr</a>
       </div>
-
       <div class="tool-card" data-categories="crypto">
         <h4>Coinomi Wallet <span class="badge">multi-coin wallet</span></h4>
-        <p class="tool-tagline">Multi-chain, non-custodial mobile wallet that supports hundreds of coins and tokens. Pair with VeraCrypt on a USB drive for an improvised cold-storage setup.</p>
+        <p class="tool-tagline">Multi-chain, non-custodial mobile wallet that supports hundreds of coins and tokens. Pair with VeraCrypt for an improvised cold-storage setup.</p>
         <a class="tool-link" href="https://www.coinomi.com/" target="_blank" rel="noopener">Coinomi.com</a>
       </div>
-
     </div>
 
-  </div><!-- /#tools-grid -->
+  </div>
 
-  <!-- USB VAULT GUIDE CALLOUT -->
   <div style="margin-top:52px;background:linear-gradient(145deg,#1a1226,#0f0a1a);border:1px solid #a78bfa40;border-radius:14px;padding:28px 24px;text-align:center;box-shadow:0 0 30px #a78bfa10,0 8px 32px #00000060">
     <div style="font-size:2rem;margin-bottom:12px">📖</div>
     <h3 style="color:#a78bfa;font-size:1.1rem;margin-bottom:10px">Guide: Build an Encrypted USB Crypto Vault</h3>
-    <p style="color:#999;font-size:.88rem;max-width:560px;margin:0 auto 18px;line-height:1.7">A step-by-step walkthrough on turning any USB stick into an encrypted crypto vault using VeraCrypt and Coinomi — plus the real truth about what counts as cold storage.</p>
-    <a href="https://www.bulbapp.io/p/fd94544b-7ad7-42fc-ba43-da4237f830e7/turn-any-usb-stick-into-a-crypto-vault-veracrypt-coinomi-and-the-truth-about-coldstorage"
-       target="_blank" rel="noopener"
-       style="display:inline-block;background:linear-gradient(180deg,#9f7aea,#6d28d9);color:#fff;padding:11px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.88rem;box-shadow:0 0 20px #a78bfa40,0 4px 12px #00000060;transition:all .15s">
-      Read the Full Guide →
-    </a>
+    <p style="color:#999;font-size:.88rem;max-width:560px;margin:0 auto 18px;line-height:1.7">A step-by-step walkthrough on turning any USB stick into an encrypted crypto vault using VeraCrypt and Coinomi.</p>
+    <a href="https://www.bulbapp.io/p/fd94544b-7ad7-42fc-ba43-da4237f830e7/turn-any-usb-stick-into-a-crypto-vault-veracrypt-coinomi-and-the-truth-about-coldstorage" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(180deg,#9f7aea,#6d28d9);color:#fff;padding:11px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.88rem;box-shadow:0 0 20px #a78bfa40,0 4px 12px #00000060">Read the Full Guide →</a>
   </div>
+</div>
 
-</div><!-- /.container -->
-
-<!-- ABOUT SECTION -->
+<!-- ABOUT -->
 <section class="about-section" id="about">
   <div class="container">
     <div class="about-inner">
@@ -963,7 +571,7 @@ footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 PrivacyGadgets Hub by HattyHats. Vetted for your privacy.</p>
+  <p>&copy; 2026 Privacy-Gadgets Hub by HattyHats. Vetted for your privacy.</p>
   <p style="margin-top:10px">
     <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener">Main Site</a> |
     <a href="https://x.com/hatty_hats" target="_blank" rel="noopener">X (Twitter)</a> |
@@ -972,60 +580,161 @@ footer a:hover{color:#ffd050;text-shadow:0 0 8px #f0a50060}
   <p style="margin-top:8px;font-size:.7rem;color:#333">Some links are affiliate links. All tools are independently vetted.</p>
 </footer>
 
-<!-- FILTER SCRIPT -->
 <script>
-(function () {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const catHeaders = document.querySelectorAll('.cat-header');
-  const toolGrids  = document.querySelectorAll('.tools-grid');
+(function() {
 
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+  /* ========================================
+     SPLASH — everything done with JS only
+     ======================================== */
+  var splash  = document.getElementById('splash');
+  var title   = document.getElementById('splash-title');
+  var sub     = document.getElementById('splash-sub');
+  var credit  = document.getElementById('splash-credit');
+  var hatty   = document.getElementById('splash-hatty');
+  var enterBtn= document.getElementById('splash-enter');
+
+  /* Fade in each element by setting opacity via JS */
+  function fadeIn(el, delay) {
+    el.style.transition = 'opacity 1s ease, transform 1s ease';
+    el.style.transform  = 'translateY(14px)';
+    setTimeout(function() {
+      el.style.opacity   = '1';
+      el.style.transform = 'translateY(0)';
+    }, delay);
+  }
+
+  fadeIn(title,   300);
+  fadeIn(sub,    1300);
+  fadeIn(credit, 2300);
+  fadeIn(enterBtn, 3200);
+
+  /* ---- Glitch: directly set inline style frames ---- */
+  function glitch(el, frames, msPerFrame, done) {
+    var i = 0;
+    function step() {
+      if (i < frames.length) {
+        var f = frames[i++];
+        el.style.cssText += ';text-shadow:' + f[0] + ';transform:' + f[1];
+        setTimeout(step, msPerFrame);
+      } else {
+        if (done) done();
+      }
+    }
+    step();
+  }
+
+  var TITLE_FRAMES = [
+    ['4px 0 #ff0000,-4px 0 #00ffff,0 0 40px #f0a500',   'translateX(-6px) skewX(-3deg)'],
+    ['-5px 0 #00ffff,5px 0 #ff0000,0 0 20px #fff',       'translateX(6px) skewX(2deg)'  ],
+    ['3px 0 #ff00ff,-3px 0 #00ff00,0 0 30px #f0a500',    'translateX(-3px)'             ],
+    ['-2px 0 #ff0000,2px 0 #00ffff,0 0 40px #f0a50080',  'translateX(4px) skewX(-1deg)' ],
+    ['0 0 30px #f0a50080,0 0 60px #f0a50040,0 2px 4px #000','translateY(0)'             ]
+  ];
+
+  var HATTY_FRAMES = [
+    ['3px 0 #ff0000,-3px 0 #00ffff,0 0 14px #f0a500',   'translateX(-5px) skewX(-2deg)'],
+    ['-4px 0 #00ffff,4px 0 #ff0000,0 0 10px #fff',      'translateX(5px)'              ],
+    ['2px 0 #ff00ff,-2px 0 #00ff00,0 0 12px #f0a500',   'translateX(-2px) skewX(1deg)' ],
+    ['none',                                              'translateX(0)'                ]
+  ];
+
+  /* Title glitches every ~5s starting at 1.8s */
+  var titleTO;
+  function loopTitle() {
+    glitch(title, TITLE_FRAMES, 65, null);
+    titleTO = setTimeout(loopTitle, 4500 + Math.random() * 1500);
+  }
+  setTimeout(loopTitle, 1800);
+
+  /* HattyHats glitches every ~2s starting at 3.4s */
+  var hattyTO;
+  function loopHatty() {
+    glitch(hatty, HATTY_FRAMES, 55, null);
+    hattyTO = setTimeout(loopHatty, 1800 + Math.random() * 700);
+  }
+  setTimeout(loopHatty, 3400);
+
+  /* Enter button */
+  enterBtn.addEventListener('click', function() {
+    clearTimeout(titleTO);
+    clearTimeout(hattyTO);
+    splash.style.transition = 'opacity 0.6s ease';
+    splash.style.opacity = '0';
+    splash.style.pointerEvents = 'none';
+    setTimeout(function() { splash.style.display = 'none'; }, 650);
+    startLogoGlitch();
+  });
+
+  /* ========================================
+     HEADER LOGO GLITCH
+     ======================================== */
+  var logo = document.getElementById('headerLogo');
+
+  function startLogoGlitch() {
+    function doLogoGlitch() {
+      logo.classList.add('glitching');
+      setTimeout(function() { logo.classList.remove('glitching'); }, 350);
+      setTimeout(doLogoGlitch, 5000 + Math.random() * 2000);
+    }
+    setTimeout(doLogoGlitch, 1000);
+  }
+
+  /* ========================================
+     HERO SCROLL REVEAL
+     ======================================== */
+  var heroText = document.getElementById('heroText');
+  function checkHero() {
+    if (heroText.getBoundingClientRect().top < window.innerHeight * 0.85) {
+      heroText.classList.add('visible');
+      window.removeEventListener('scroll', checkHero);
+    }
+  }
+  window.addEventListener('scroll', checkHero, { passive: true });
+
+  /* ========================================
+     FILTER BUTTONS
+     ======================================== */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var catHeaders  = document.querySelectorAll('.cat-header');
+  var toolGrids   = document.querySelectorAll('.tools-grid');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
-      var filter = btn.dataset.filter;
-
-      if (filter === 'all') {
-        catHeaders.forEach(function (h) { h.style.display = ''; });
-        toolGrids.forEach(function (g) {
+      var f = btn.dataset.filter;
+      if (f === 'all') {
+        catHeaders.forEach(function(h) { h.style.display = ''; });
+        toolGrids.forEach(function(g) {
           g.style.display = '';
-          g.querySelectorAll('.tool-card').forEach(function (c) { c.style.display = ''; });
+          g.querySelectorAll('.tool-card').forEach(function(c) { c.style.display = ''; });
         });
         return;
       }
-
-      catHeaders.forEach(function (h) {
-        h.style.display = h.dataset.cat === filter ? '' : 'none';
-      });
-
-      toolGrids.forEach(function (g) {
-        var visible = 0;
-        g.querySelectorAll('.tool-card').forEach(function (c) {
-          var cats = c.dataset.categories || '';
-          if (cats.includes(filter)) {
-            c.style.display = '';
-            visible++;
-          } else {
-            c.style.display = 'none';
-          }
+      catHeaders.forEach(function(h) { h.style.display = h.dataset.cat === f ? '' : 'none'; });
+      toolGrids.forEach(function(g) {
+        var vis = 0;
+        g.querySelectorAll('.tool-card').forEach(function(c) {
+          var show = (c.dataset.categories || '').includes(f);
+          c.style.display = show ? '' : 'none';
+          if (show) vis++;
         });
-        g.style.display = visible > 0 ? '' : 'none';
+        g.style.display = vis ? '' : 'none';
       });
     });
   });
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+  /* ========================================
+     SMOOTH SCROLL
+     ======================================== */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var t = document.querySelector(this.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
 })();
 </script>
-
 </body>
 </html>
