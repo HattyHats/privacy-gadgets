@@ -77,18 +77,51 @@ header{
   text-shadow:0 0 18px #f0a50060,0 2px 4px #000;white-space:nowrap;cursor:default;
 }
 .logo-text span{color:#fff}
-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-nav a{
-  color:#e8e8e8;text-decoration:none;font-size:.8rem;font-weight:600;
-  padding:7px 15px;border-radius:8px;white-space:nowrap;
+nav{display:flex;align-items:center;justify-content:flex-end;position:relative}
+
+/* Dropdown toggle button */
+.nav-toggle{
+  display:flex;align-items:center;gap:8px;
+  color:#e8e8e8;font-size:.85rem;font-weight:700;letter-spacing:.5px;
+  padding:9px 18px;border-radius:8px;cursor:pointer;
   background:linear-gradient(180deg,#2a2a40,#16162a 60%,#0f0f20);
   border:1px solid #3a3a58;
   box-shadow:0 1px 0 #ffffff14 inset,0 3px 8px #00000080;
-  transition:all .15s ease;position:relative;top:0;
+  transition:all .15s ease;user-select:none;
 }
-nav a:hover{
-  color:#f0a500;border-color:#f0a50066;top:-1px;
-  box-shadow:0 1px 0 #ffffff18 inset,0 0 14px #f0a50030,0 4px 12px #00000090;
+.nav-toggle:hover{color:#f0a500;border-color:#f0a50066;box-shadow:0 1px 0 #ffffff18 inset,0 0 14px #f0a50030,0 4px 12px #00000090}
+.nav-toggle.open{color:#f0a500;border-color:#f0a50066;box-shadow:0 0 14px #f0a50030}
+
+/* Hamburger / X icon */
+.nav-toggle .icon{display:flex;flex-direction:column;gap:4px;width:18px}
+.nav-toggle .icon span{display:block;height:2px;background:currentColor;border-radius:2px;transition:all .2s ease}
+.nav-toggle.open .icon span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle.open .icon span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.open .icon span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Dropdown panel */
+.nav-dropdown{
+  position:absolute;top:calc(100% + 10px);right:0;
+  background:linear-gradient(145deg,#12121e,#0c0c18);
+  border:1px solid #f0a50040;border-radius:12px;
+  box-shadow:0 0 30px #f0a50018,0 12px 40px #00000090;
+  min-width:220px;overflow:hidden;
+  opacity:0;pointer-events:none;transform:translateY(-8px);
+  transition:opacity .2s ease,transform .2s ease;
+  z-index:200;
+}
+.nav-dropdown.open{opacity:1;pointer-events:all;transform:translateY(0)}
+
+.nav-dropdown a{
+  display:block;color:#d0d0d0;text-decoration:none;
+  font-size:.84rem;font-weight:600;letter-spacing:.3px;
+  padding:12px 20px;border-bottom:1px solid #f0a50015;
+  transition:background .15s,color .15s,padding-left .15s;
+}
+.nav-dropdown a:last-child{border-bottom:none}
+.nav-dropdown a:hover{
+  background:#f0a50012;color:#f0a500;padding-left:26px;
+  text-shadow:0 0 10px #f0a50060;
 }
 
 /* ── HERO ── */
@@ -267,10 +300,22 @@ footer a:hover{color:#ffd050}
 <header>
   <div class="logo-text" id="headerLogo">Privacy-<span>Gadgets</span></div>
   <nav>
-    <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener">Main Site</a>
-    <a href="https://hattyhats.github.io/voi-maze/" target="_blank" rel="noopener">Voi Maze</a>
-    <a href="https://cardano-quest-island.netlify.app/" target="_blank" rel="noopener">Cardano Quest</a>
-    <a href="https://hatty-universe.netlify.app/" target="_blank" rel="noopener">Hatty's Universe</a>
+    <div class="nav-toggle" id="navToggle">
+      <span>HattyHats Projects</span>
+      <div class="icon">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="nav-dropdown" id="navDropdown">
+      <a href="https://earnwithhatty.com/" target="_blank" rel="noopener">🎓 Learn With Hatty</a>
+      <a href="https://earn-with-hatty-tools.netlify.app/" target="_blank" rel="noopener">🛠 Hatty's Tools</a>
+      <a href="https://hattys-media.netlify.app/" target="_blank" rel="noopener">🎬 Hatty's Media</a>
+      <a href="https://hatty-universe.netlify.app/" target="_blank" rel="noopener">🌌 Hatty's Universe</a>
+      <a href="https://hattys-news.netlify.app/" target="_blank" rel="noopener">📰 Hatty's News</a>
+      <a href="https://hattyhats.github.io/Open-Focus/" target="_blank" rel="noopener">🎯 Open-Focus</a>
+      <a href="https://orbit-node.netlify.app/" target="_blank" rel="noopener">🪐 OrbitNode</a>
+      <a href="https://case-board.netlify.app/" target="_blank" rel="noopener">📋 Case-Board</a>
+    </div>
   </nav>
 </header>
 
@@ -723,6 +768,27 @@ footer a:hover{color:#ffd050}
       });
     });
   });
+
+  /* ========================================
+     NAV DROPDOWN
+     ======================================== */
+  var navToggle   = document.getElementById('navToggle');
+  var navDropdown = document.getElementById('navDropdown');
+
+  navToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = navDropdown.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', function() {
+    navDropdown.classList.remove('open');
+    navToggle.classList.remove('open');
+  });
+
+  // Prevent dropdown clicks from closing it
+  navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
 
   /* ========================================
      SMOOTH SCROLL
