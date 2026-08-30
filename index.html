@@ -1,884 +1,2801 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>\n<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy-Gadgets Hub – Vetted Privacy Tools by HattyHats</title>
-<meta name="description" content="Curated directory of the best open-source privacy gadgets and tools for 2026. Vetted by HattyHats. Crypto, Web3, AI privacy essentials.">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6374033238930580" crossorigin="anonymous"></script>
-<style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy-Gadgets | Cyber Defense & Open-Source Privacy Hub</title>
+  <meta name="description" content="Privacy is a right, not a feature. Discover the ultimate vetted directory of open-source privacy gadgets, hardened tools, hardware keys, and encrypted networks by HattyHats.">
+  <meta name="keywords" content="privacy gadgets, open source privacy, big tech surveillance, browser fingerprinting, signal, tor, tails os, mullvad, yubikey, veracrypt, monero">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6374033238930580" crossorigin="anonymous"></script>
 
-/* ── CYBERPUNK CSS VARIABLES ── */
-:root {
-  --bg-dark: #020204;
-  --bg-panel: #0a0a16;
-  --neon-cyan: #00f0ff;
-  --neon-pink: #ff003c;
-  --neon-yellow: #fce300;
-  --neon-purple: #b026ff;
-  --text-main: #e0e0e0;
-  --text-muted: #888899;
-  --font-main: 'Share Tech Mono', monospace;
-  --font-header: 'Orbitron', sans-serif;
-}
+  <style>
+    /* ==========================================================================
+       CYBERPUNK / HACKER DESIGN SYSTEM VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-dark: #030408;
+      --bg-card: #090b14;
+      --bg-card-hover: #0f1322;
+      --bg-panel: rgba(10, 14, 26, 0.85);
+      --bg-terminal: #05070d;
+      
+      --neon-cyan: #00f0ff;
+      --neon-green: #00ff66;
+      --neon-pink: #ff0055;
+      --neon-yellow: #fce300;
+      --neon-purple: #a855f7;
+      --neon-orange: #ff6b00;
+      
+      --cyan-glow: rgba(0, 240, 255, 0.4);
+      --green-glow: rgba(0, 255, 102, 0.35);
+      --pink-glow: rgba(255, 0, 85, 0.4);
+      --purple-glow: rgba(168, 85, 247, 0.35);
+      
+      --text-main: #e2e8f0;
+      --text-muted: #8b9bb4;
+      --text-dim: #4b5870;
+      --border-cyber: rgba(0, 240, 255, 0.25);
+      --border-card: rgba(255, 255, 255, 0.07);
+      
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-code: 'Fira Code', monospace;
+      --font-cyber: 'Orbitron', sans-serif;
+    }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-body { 
-  font-family: var(--font-main); 
-  background: var(--bg-dark); 
-  color: var(--text-main); 
-  overflow-x: hidden; 
-}
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1, h2, h3, h4, h5, h6 { font-family: var(--font-header); }
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 16px;
+    }
 
-/* ── GLOBAL CRT SCANLINES ── */
-body::after {
-  content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 9999; background-size: 100% 2px, 3px 100%; pointer-events: none;
-}
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
 
-/* ── SPLASH ── */
-#splash {
-  position: fixed; inset: 0; background: var(--bg-dark); z-index: 10000;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
-}
-#splash-scanline {
-  position: absolute; inset: 0; pointer-events: none;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.1) 2px, rgba(0,240,255,0.1) 4px);
-}
-#splash-title {
-  font-family: var(--font-header);
-  font-size: clamp(2.8rem, 8vw, 6rem); font-weight: 900; color: var(--neon-yellow); letter-spacing: 4px;
-  text-align: center; opacity: 0; position: relative; z-index: 2;
-  text-shadow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-yellow);
-}
-#splash-sub {
-  font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--neon-cyan); letter-spacing: 1px;
-  text-align: center; opacity: 0; position: relative; z-index: 2; max-width: 580px; padding: 0 20px;
-  text-transform: uppercase;
-}
-#splash-credit {
-  font-size: clamp(0.75rem, 1.8vw, 1rem); color: var(--text-muted); letter-spacing: 2px;
-  text-align: center; opacity: 0; position: relative; z-index: 2;
-}
-#splash-hatty { color: var(--neon-pink); font-weight: 700; display: inline-block; text-shadow: 0 0 8px var(--neon-pink); }
-#splash-enter {
-  opacity: 0; position: relative; z-index: 2; cursor: pointer; border: none;
-  background: transparent; border: 2px solid var(--neon-cyan);
-  color: var(--neon-cyan); padding: 14px 52px;
-  font-family: var(--font-header); font-size: 1.2rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-  box-shadow: 0 0 15px rgba(0,240,255,0.5), inset 0 0 15px rgba(0,240,255,0.5);
-  transition: all 0.2s ease;
-  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-}
-#splash-enter:hover {
-  background: var(--neon-cyan); color: var(--bg-dark);
-  box-shadow: 0 0 30px var(--neon-cyan);
-}
+    /* CRT Scanline & Subtle Vignette Overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        linear-gradient(rgba(18, 16, 24, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+      background-size: 100% 3px, 100% 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
 
-/* ── BACKGROUND MATRIX/GRID ── */
-body::before {
-  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -2;
-  background: 
-    linear-gradient(transparent 0%, rgba(0, 240, 255, 0.05) 50%, transparent 100%),
-    linear-gradient(90deg, transparent 0%, rgba(255, 0, 60, 0.05) 50%, transparent 100%);
-  background-size: 40px 40px;
-}
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-cyber);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
 
-/* ── CODE RAIN ── */
-.code-rain { position: fixed; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
-.code-column {
-  position: absolute; top: -120%; width: 2%; color: var(--neon-green, #39ff14); font-family: monospace; font-size: 14px;
-  text-shadow: 0 0 8px #39ff14; white-space: pre; opacity: 0.2; animation: codeFall linear infinite;
-}
-@keyframes codeFall { 0% { transform: translateY(0); } 100% { transform: translateY(220%); } }
-.code-column:nth-child(1) { left: 5%; animation-duration: 14s; animation-delay: -3s; }
-.code-column:nth-child(2) { left: 18%; animation-duration: 11s; animation-delay: -6s; }
-.code-column:nth-child(3) { left: 30%; animation-duration: 16s; animation-delay: -2s; }
-.code-column:nth-child(4) { left: 45%; animation-duration: 12s; animation-delay: -8s; }
-.code-column:nth-child(5) { left: 60%; animation-duration: 15s; animation-delay: -5s; }
-.code-column:nth-child(6) { left: 74%; animation-duration: 10s; animation-delay: -7s; }
-.code-column:nth-child(7) { left: 87%; animation-duration: 13s; animation-delay: -1s; }
+    a {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
 
-/* ── HEADER ── */
-header {
-  background: rgba(2, 2, 4, 0.85); backdrop-filter: blur(10px); padding: 14px 28px;
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 2px solid var(--neon-cyan); position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 4px 20px rgba(0,240,255,0.2);
-}
-.logo-text {
-  font-family: var(--font-header); font-size: 1.5rem; font-weight: 700; color: var(--neon-yellow); letter-spacing: 2px;
-  text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-cyan); white-space: nowrap; cursor: default;
-}
-.logo-text span { color: #fff; text-shadow: none; }
-nav { display: flex; align-items: center; justify-content: flex-end; position: relative; }
+    /* Canvas Backgrounds */
+    #matrix-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.18;
+      pointer-events: none;
+    }
 
-/* Dropdown toggle button */
-.nav-toggle {
-  display: flex; align-items: center; gap: 8px;
-  color: var(--neon-cyan); font-size: 0.9rem; font-family: var(--font-header); letter-spacing: 1px;
-  padding: 8px 18px; cursor: pointer; background: transparent;
-  border: 1px solid var(--neon-cyan); border-radius: 0;
-  box-shadow: inset 0 0 10px rgba(0,240,255,0.2), 0 0 10px rgba(0,240,255,0.2);
-  transition: all 0.2s ease; user-select: none; text-transform: uppercase;
-}
-.nav-toggle:hover { background: rgba(0,240,255,0.1); box-shadow: inset 0 0 20px rgba(0,240,255,0.4), 0 0 20px rgba(0,240,255,0.4); }
-.nav-toggle.open { background: var(--neon-cyan); color: var(--bg-dark); }
+    .cyber-grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-/* Hamburger / X icon */
-.nav-toggle .icon { display: flex; flex-direction: column; gap: 4px; width: 18px; }
-.nav-toggle .icon span { display: block; height: 2px; background: currentColor; border-radius: 0; transition: all 0.2s ease; }
-.nav-toggle.open .icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav-toggle.open .icon span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-toggle.open .icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    /* ==========================================================================
+       AUTOMATED CYBER BOOT SPLASH SCREEN
+       ========================================================================== */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #020306;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s ease;
+    }
 
-/* Dropdown panel */
-.nav-dropdown {
-  position: absolute; top: calc(100% + 14px); right: 0;
-  background: rgba(10, 10, 22, 0.95); backdrop-filter: blur(8px);
-  border: 1px solid var(--neon-pink); border-top: 4px solid var(--neon-pink);
-  box-shadow: 0 10px 30px rgba(255,0,60,0.3);
-  min-width: 240px; overflow: hidden;
-  opacity: 0; pointer-events: none; transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease; z-index: 200;
-}
-.nav-dropdown.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    #splash-screen.splash-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.04);
+    }
 
-.nav-dropdown a {
-  display: block; color: var(--text-main); text-decoration: none;
-  font-size: 0.9rem; letter-spacing: 1px;
-  padding: 14px 20px; border-bottom: 1px solid rgba(255,0,60,0.2);
-  transition: all 0.2s; position: relative; overflow: hidden;
-}
-.nav-dropdown a:last-child { border-bottom: none; }
-.nav-dropdown a::before {
-  content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,0,60,0.2), transparent);
-  transition: left 0.3s ease; z-index: -1;
-}
-.nav-dropdown a:hover::before { left: 100%; }
-.nav-dropdown a:hover { color: var(--neon-pink); padding-left: 28px; text-shadow: 0 0 8px var(--neon-pink); border-left: 4px solid var(--neon-pink); }
+    .splash-terminal-box {
+      width: 100%;
+      max-width: 640px;
+      background: rgba(8, 10, 18, 0.95);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 35px var(--cyan-glow), inset 0 0 20px rgba(0, 240, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  background: radial-gradient(circle at center, rgba(0,240,255,0.05) 0%, var(--bg-dark) 70%);
-  text-align: center; padding: 80px 28px; position: relative; overflow: hidden;
-}
-.hero::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: 
-    linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px; opacity: 0.5;
-}
-.hero-lock { position: relative; z-index: 2; margin-bottom: 36px; opacity: 0; animation: lockReveal 2s ease 0.3s forwards; }
-.hero-lock img {
-  width: clamp(180px, 28vw, 320px); height: auto;
-  filter: drop-shadow(0 0 20px var(--neon-cyan)) drop-shadow(0 0 60px var(--neon-purple));
-  animation: lockGlow 3s ease-in-out infinite alternate;
-}
-@keyframes lockReveal { 0% { opacity: 0; transform: scale(0.6); } 100% { opacity: 1; transform: scale(1); } }
-@keyframes lockGlow { 0% { filter: drop-shadow(0 0 10px var(--neon-cyan)) drop-shadow(0 0 30px var(--neon-purple)) brightness(1); } 100% { filter: drop-shadow(0 0 30px var(--neon-cyan)) drop-shadow(0 0 80px var(--neon-purple)) brightness(1.3); } }
-.hero-text-wrap { position: relative; z-index: 2; opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
-.hero-text-wrap.visible { opacity: 1; transform: translateY(0); }
-.hero h2 { font-size: 2.8rem; margin-bottom: 18px; color: #fff; text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-cyan), 0 0 20px rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; }
-.hero p { font-size: 1.1rem; color: var(--text-main); max-width: 680px; margin: 0 auto 32px; line-height: 1.8; text-shadow: 0 0 5px rgba(0,240,255,0.3); }
-.hero a.cta {
-  display: inline-block; background: transparent;
-  color: var(--neon-yellow); padding: 15px 40px; text-decoration: none;
-  font-family: var(--font-header); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase;
-  border: 2px solid var(--neon-yellow);
-  box-shadow: inset 0 0 15px rgba(252,227,0,0.3), 0 0 20px rgba(252,227,0,0.4);
-  transition: all 0.2s ease; position: relative; overflow: hidden;
-  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-}
-.hero a.cta:hover {
-  background: var(--neon-yellow); color: var(--bg-dark);
-  box-shadow: inset 0 0 20px rgba(252,227,0,0.8), 0 0 40px rgba(252,227,0,0.8);
-  text-shadow: none;
-}
-.scroll-hint {
-  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3;
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  opacity: 0.8; animation: scrollBob 1.8s ease-in-out infinite; font-size: 0.8rem; color: var(--neon-cyan); letter-spacing: 2px; font-family: var(--font-header);
-}
-@keyframes scrollBob { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+    .splash-header-bar {
+      background: rgba(0, 240, 255, 0.12);
+      border-bottom: 1px solid var(--neon-cyan);
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-family: var(--font-cyber);
+      color: var(--neon-cyan);
+      letter-spacing: 2px;
+    }
 
-/* ── CONTAINERS ── */
-.container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; position: relative; z-index: 10; }
-.sec-title { font-size: 2rem; color: var(--neon-pink); margin-bottom: 24px; text-shadow: 0 0 15px var(--neon-pink); text-align: center; position: relative; text-transform: uppercase; letter-spacing: 3px; }
-.sec-title::after { content: ""; display: block; width: 100px; height: 4px; background: var(--neon-cyan); margin: 12px auto 0; box-shadow: 0 0 15px var(--neon-cyan); }
-.sec-desc { text-align: center; color: var(--text-muted); max-width: 720px; margin: 0 auto 40px; line-height: 1.8; font-size: 1rem; }
+    .splash-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .splash-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .splash-dot.red { background: var(--neon-pink); box-shadow: 0 0 8px var(--neon-pink); }
+    .splash-dot.yellow { background: var(--neon-yellow); box-shadow: 0 0 8px var(--neon-yellow); }
+    .splash-dot.green { background: var(--neon-green); box-shadow: 0 0 8px var(--neon-green); }
 
-/* ── FILTERS ── */
-.filters { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-.filter-btn {
-  background: rgba(10, 10, 22, 0.6); color: var(--neon-cyan); border: 1px solid rgba(0,240,255,0.4);
-  padding: 8px 20px; cursor: pointer; font-family: var(--font-header); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  transition: all 0.2s ease; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-}
-.filter-btn:hover { background: rgba(0,240,255,0.15); border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0,240,255,0.3); }
-.filter-btn.active { background: var(--neon-cyan); color: var(--bg-dark); border-color: var(--neon-cyan); box-shadow: 0 0 20px var(--neon-cyan); text-shadow: none; }
+    .splash-body {
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-family: var(--font-code);
+    }
 
-/* ── CAT HEADERS ── */
-.cat-header { display: flex; align-items: center; gap: 16px; margin: 60px 0 24px; }
-.cat-header h3 { font-size: 1.3rem; color: var(--neon-yellow); letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 0 15px rgba(252,227,0,0.5); }
-.cat-header::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--neon-yellow), transparent); box-shadow: 0 0 8px var(--neon-yellow); }
-.cat-icon { font-size: 1.5rem; text-shadow: 0 0 15px rgba(255,255,255,0.8); filter: hue-rotate(180deg); }
+    .splash-title-brand {
+      font-family: var(--font-cyber);
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
+      color: var(--neon-yellow);
+      text-align: center;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px var(--neon-yellow), 0 0 40px rgba(252, 227, 0, 0.4);
+      margin-bottom: 4px;
+    }
+    .splash-title-brand span {
+      color: #fff;
+    }
 
-/* ── TOOL CARDS ── */
-.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-.tool-card {
-  background: var(--bg-panel); border-left: 4px solid var(--neon-purple); padding: 24px;
-  position: relative; overflow: hidden; display: flex; flex-direction: column;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 0 20px rgba(176,38,255,0.05);
-  transition: all 0.3s ease;
-}
-.tool-card::before {
-  content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(135deg, transparent 70%, rgba(176,38,255,0.1) 100%); pointer-events: none;
-}
-.tool-card::after {
-  content: ""; position: absolute; bottom: 0; right: 0; width: 20px; height: 20px;
-  background: var(--neon-purple); clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
-.tool-card:hover {
-  transform: translateY(-5px) scale(1.02); border-left-color: var(--neon-cyan);
-  box-shadow: 0 12px 35px rgba(0,0,0,0.7), 0 0 20px rgba(0,240,255,0.2), inset 0 0 20px rgba(0,240,255,0.05);
-}
-.tool-card:hover::after { background: var(--neon-cyan); }
-.tool-card h4 { font-size: 1.1rem; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
-.tool-tagline { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; flex: 1; }
-.badge {
-  display: inline-block; font-family: var(--font-header); font-size: 0.65rem; font-weight: 700; padding: 3px 8px;
-  border: 1px solid var(--neon-cyan); color: var(--neon-cyan); letter-spacing: 1px; text-transform: uppercase;
-  background: rgba(0,240,255,0.1); box-shadow: 0 0 8px rgba(0,240,255,0.2);
-}
-.badge-os { border-color: #39ff14; color: #39ff14; background: rgba(57,255,20,0.1); box-shadow: 0 0 8px rgba(57,255,20,0.2); }
-.badge-msg { border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(255,0,60,0.1); box-shadow: 0 0 8px rgba(255,0,60,0.2); }
-.badge-vpn { border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(176,38,255,0.1); box-shadow: 0 0 8px rgba(176,38,255,0.2); }
-.badge-pw { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(252,227,0,0.1); box-shadow: 0 0 8px rgba(252,227,0,0.2); }
-.badge-browser { border-color: #00ffaa; color: #00ffaa; background: rgba(0,255,170,0.1); box-shadow: 0 0 8px rgba(0,255,170,0.2); }
-.badge-search { border-color: #ff9900; color: #ff9900; background: rgba(255,153,0,0.1); box-shadow: 0 0 8px rgba(255,153,0,0.2); }
-.badge-self { border-color: #ff00ff; color: #ff00ff; background: rgba(255,0,255,0.1); box-shadow: 0 0 8px rgba(255,0,255,0.2); }
-.badge-earn { border-color: #00ccff; color: #00ccff; background: rgba(0,204,255,0.1); box-shadow: 0 0 8px rgba(0,204,255,0.2); }
-.tool-link {
-  display: inline-flex; align-items: center; gap: 8px; color: var(--neon-cyan); text-decoration: none;
-  font-family: var(--font-header); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; margin-top: auto;
-  transition: all 0.2s; position: relative; width: fit-content; text-transform: uppercase;
-}
-.tool-link::after { content: " >>"; transition: transform 0.2s; }
-.tool-link:hover { color: #fff; text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); }
-.tool-link:hover::after { transform: translateX(5px); }
-.tool-link::before { content: ""; position: absolute; bottom: -2px; left: 0; width: 0%; height: 2px; background: var(--neon-cyan); transition: width 0.3s; box-shadow: 0 0 10px var(--neon-cyan); }
-.tool-link:hover::before { width: 100%; }
-.aff-note { font-size: 0.7rem; color: #666; margin-top: 8px; font-style: italic; }
+    .splash-subtitle {
+      text-align: center;
+      color: var(--neon-cyan);
+      font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+      font-family: var(--font-cyber);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
 
-/* ── DISCLAIMER ── */
-.disclaimer {
-  background: rgba(255,0,60,0.05); border: 1px solid var(--neon-pink); border-left: 4px solid var(--neon-pink);
-  padding: 16px 24px; font-size: 0.9rem; color: #aaa; line-height: 1.7; margin-bottom: 40px; text-align: left;
-  box-shadow: 0 0 20px rgba(255,0,60,0.1);
-}
-.disclaimer strong { color: var(--neon-pink); font-family: var(--font-header); letter-spacing: 1px; text-transform: uppercase; }
+    .splash-logs {
+      background: #04050a;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 14px 16px;
+      min-height: 110px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-/* ── LOGO GLITCH ── */
-@keyframes logoGlitch {
-  0% { text-shadow: 3px 0 var(--neon-pink), -3px 0 var(--neon-cyan); transform: translateX(-3px) skewX(-2deg); }
-  20% { text-shadow: -4px 0 var(--neon-cyan), 4px 0 var(--neon-pink); transform: translateX(3px) skewX(2deg); }
-  40% { text-shadow: 0 0 15px var(--neon-yellow); transform: translateX(0) skewX(0); color: #fff; }
-  60% { text-shadow: 4px 0 var(--neon-purple), -4px 0 #39ff14; transform: translateX(-2px) skewX(1deg); }
-  80% { text-shadow: 0 0 15px var(--neon-yellow); transform: translateX(0) skewX(0); color: var(--neon-yellow); }
-  100% { text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-cyan); transform: translateX(0) skewX(0); }
-}
-.logo-text.glitching { animation: logoGlitch 0.4s steps(1) 0s 3; }
+    .splash-log-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .splash-log-line .tag-ok { color: var(--neon-green); font-weight: 700; }
+    .splash-log-line .tag-alert { color: var(--neon-pink); font-weight: 700; }
+    .splash-log-line .tag-cyan { color: var(--neon-cyan); }
 
-/* ── ABOUT ── */
-.about-section { background: rgba(5,5,10,0.95); border-top: 2px solid var(--neon-cyan); position: relative; overflow: hidden; }
-.about-section::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(transparent, rgba(0,240,255,0.05));
-}
-.about-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
-.about-inner .hat { font-size: 4rem; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--neon-yellow)); animation: float 4s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-.about-inner h2 { font-size: 2rem; color: var(--neon-cyan); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 15px rgba(0,240,255,0.5); }
-.about-inner p { color: var(--text-main); line-height: 1.8; margin-bottom: 16px; font-size: 1.05rem; }
-.about-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
-.about-links a {
-  color: var(--neon-pink); text-decoration: none; font-family: var(--font-header); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  padding: 10px 24px; border: 1px solid var(--neon-pink);
-  transition: all 0.2s; position: relative;
-  background: rgba(255,0,60,0.05); box-shadow: 0 0 10px rgba(255,0,60,0.2);
-}
-.about-links a:hover {
-  background: var(--neon-pink); color: var(--bg-dark);
-  box-shadow: 0 0 20px var(--neon-pink); text-shadow: none;
-}
+    .splash-progress-container {
+      margin-top: 10px;
+    }
+    .splash-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      margin-bottom: 6px;
+    }
+    .splash-progress-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--neon-cyan);
+      overflow: hidden;
+      position: relative;
+    }
+    .splash-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+      box-shadow: 0 0 12px var(--neon-green);
+      transition: width 0.1s linear;
+    }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--bg-dark); border-top: 1px dashed var(--neon-purple);
-  padding: 30px; text-align: center; color: var(--text-muted); font-size: 0.9rem;
-}
-footer a { color: var(--neon-cyan); text-decoration: none; margin: 0 10px; transition: color 0.2s; text-transform: uppercase; font-family: var(--font-header); font-size: 0.8rem; letter-spacing: 1px; }
-footer a:hover { color: #fff; text-shadow: 0 0 10px var(--neon-cyan); }
-footer p:last-child { margin-top: 12px; font-size: 0.75rem; color: #555; }
+    .splash-skip-hint {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .splash-skip-hint:hover {
+      color: var(--neon-cyan);
+    }
 
-/* ── RESPONSIVE ── */
-@media(max-width: 820px) {
-  header { flex-direction: column; gap: 16px; padding: 20px; }
-  nav { justify-content: center; }
-  .hero h2 { font-size: 2rem; }
-}
-@media(max-width: 520px) {
-  .hero h2 { font-size: 1.6rem; }
-  .tools-grid { grid-template-columns: 1fr; }
-  .sec-title { font-size: 1.6rem; }
-}
+    /* ==========================================================================
+       TOP STATUS HUD & HEADER
+       ========================================================================== */
+    .top-hud-bar {
+      background: #020307;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 6px 24px;
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      z-index: 101;
+      position: relative;
+    }
+    .hud-stat-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hud-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-green);
+      box-shadow: 0 0 8px var(--neon-green);
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
 
-</style>
+    header {
+      background: rgba(3, 4, 8, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--neon-cyan);
+      box-shadow: 0 4px 30px rgba(0, 240, 255, 0.15);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-shield-icon {
+      font-size: 1.6rem;
+      filter: drop-shadow(0 0 10px var(--neon-cyan));
+    }
+    .logo-text {
+      font-family: var(--font-cyber);
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--neon-yellow);
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-cyan);
+      user-select: none;
+    }
+    .logo-text span {
+      color: #ffffff;
+      text-shadow: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-family: var(--font-cyber);
+      color: var(--text-main);
+      letter-spacing: 1px;
+      padding: 6px 10px;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: var(--neon-cyan);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Hatty Projects Ecosystem Menu */
+    .ecosystem-dropdown-wrapper {
+      position: relative;
+    }
+    .ecosystem-toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 8px 16px;
+      font-family: var(--font-cyber);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+      transition: all 0.2s ease;
+    }
+    .ecosystem-toggle-btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon-cyan);
+    }
+    .ecosystem-toggle-btn.open {
+      background: var(--neon-cyan);
+      color: #000;
+    }
+
+    .ecosystem-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      width: 270px;
+      max-height: 80vh;
+      overflow-y: auto;
+      background: rgba(8, 11, 20, 0.98);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--neon-pink);
+      border-top: 4px solid var(--neon-pink);
+      box-shadow: 0 15px 40px rgba(255, 0, 85, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 200;
+    }
+    .ecosystem-menu::-webkit-scrollbar {
+      width: 5px;
+    }
+    .ecosystem-menu::-webkit-scrollbar-track {
+      background: rgba(8, 11, 20, 0.8);
+    }
+    .ecosystem-menu::-webkit-scrollbar-thumb {
+      background: var(--neon-pink);
+    }
+    .ecosystem-menu.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .ecosystem-menu a {
+      display: block;
+      color: var(--text-main);
+      padding: 12px 18px;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      border-bottom: 1px solid rgba(255, 0, 85, 0.15);
+      transition: all 0.2s;
+    }
+    .ecosystem-menu a:last-child {
+      border-bottom: none;
+    }
+    .ecosystem-menu a:hover {
+      background: rgba(255, 0, 85, 0.12);
+      color: var(--neon-pink);
+      padding-left: 24px;
+      border-left: 4px solid var(--neon-pink);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-lock-wrap {
+      position: relative;
+      margin-bottom: 28px;
+      display: inline-block;
+    }
+    .hero-lock-wrap img {
+      width: clamp(170px, 24vw, 290px);
+      height: auto;
+      filter: drop-shadow(0 0 25px var(--neon-cyan)) drop-shadow(0 0 70px var(--neon-purple));
+      animation: lockFloat 4s ease-in-out infinite alternate;
+    }
+    @keyframes lockFloat {
+      0% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 0 20px var(--neon-cyan)) drop-shadow(0 0 50px var(--neon-purple)); }
+      100% { transform: translateY(-12px) rotate(1deg); filter: drop-shadow(0 0 35px var(--neon-cyan)) drop-shadow(0 0 90px var(--neon-purple)); }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      font-family: var(--font-cyber);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5.5vw, 3.8rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 960px;
+      text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-cyan), 0 0 30px rgba(255,255,255,0.4);
+    }
+
+    .hero-title .highlight-gold {
+      color: var(--neon-yellow);
+      text-shadow: 0 0 20px var(--neon-yellow);
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .btn-cyber-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--neon-yellow);
+      color: #000000;
+      padding: 14px 34px;
+      font-family: var(--font-cyber);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--neon-yellow);
+      box-shadow: 0 0 25px rgba(252, 227, 0, 0.6);
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-cyber-primary:hover {
+      background: transparent;
+      color: var(--neon-yellow);
+      box-shadow: 0 0 35px var(--neon-yellow), inset 0 0 15px rgba(252, 227, 0, 0.4);
+    }
+
+    .btn-cyber-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 240, 255, 0.08);
+      color: var(--neon-cyan);
+      padding: 14px 30px;
+      font-family: var(--font-cyber);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.1);
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-cyber-secondary:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 30px var(--neon-cyan);
+    }
+
+    /* Hero Live Surveillance Counter Cards */
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero-stat-card {
+      background: rgba(10, 14, 26, 0.75);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-left: 3px solid var(--neon-cyan);
+      padding: 18px 20px;
+      text-align: left;
+      position: relative;
+    }
+    .hero-stat-num {
+      font-family: var(--font-cyber);
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 12px var(--neon-cyan);
+      margin-bottom: 4px;
+    }
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ==========================================================================
+       SECTION WRAPPERS & TITLES
+       ========================================================================== */
+    .section-wrap {
+      padding: 90px 24px;
+      position: relative;
+      border-top: 1px solid rgba(0, 240, 255, 0.15);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+    .section-badge {
+      display: inline-block;
+      font-family: var(--font-cyber);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--neon-pink);
+      border: 1px solid var(--neon-pink);
+      padding: 3px 12px;
+      margin-bottom: 12px;
+      background: rgba(255, 0, 85, 0.08);
+      box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: #ffffff;
+      margin-bottom: 14px;
+      text-shadow: 0 0 15px rgba(255,255,255,0.3);
+    }
+    .section-title span {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 15px var(--neon-cyan);
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ==========================================================================
+       MANIFESTO: PRIVACY IS A RIGHT, NOT A FEATURE
+       ========================================================================== */
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .manifesto-quote-card {
+      background: linear-gradient(135deg, rgba(16, 20, 36, 0.9), rgba(8, 10, 20, 0.95));
+      border: 1px solid var(--neon-pink);
+      border-left: 6px solid var(--neon-pink);
+      padding: 36px 32px;
+      box-shadow: 0 10px 40px rgba(255, 0, 85, 0.15);
+      position: relative;
+    }
+    .manifesto-quote-card::before {
+      content: "“";
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      font-size: 6rem;
+      font-family: var(--font-cyber);
+      color: rgba(255, 0, 85, 0.15);
+      line-height: 1;
+    }
+    .manifesto-quote-card h3 {
+      font-size: 1.5rem;
+      color: var(--neon-pink);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .manifesto-quote-card p {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-top: 3px solid var(--neon-cyan);
+      padding: 24px 20px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 8px 30px rgba(0, 240, 255, 0.15);
+    }
+    .pillar-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .pillar-card h4 {
+      font-size: 1.1rem;
+      color: var(--neon-yellow);
+      margin-bottom: 8px;
+    }
+    .pillar-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SURVEILLANCE ENGINE: HOW BIG TECH STEALS & SELLS YOU
+       ========================================================================== */
+    .surveillance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .threat-card {
+      background: rgba(12, 16, 28, 0.85);
+      border: 1px solid rgba(255, 0, 85, 0.3);
+      border-left: 4px solid var(--neon-pink);
+      padding: 26px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .threat-card:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 10px 35px rgba(255, 0, 85, 0.2);
+      transform: translateY(-4px);
+    }
+    .threat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .threat-tag {
+      font-size: 0.7rem;
+      font-family: var(--font-cyber);
+      background: rgba(255, 0, 85, 0.15);
+      color: var(--neon-pink);
+      padding: 2px 8px;
+      border: 1px solid var(--neon-pink);
+    }
+    .threat-card h4 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .threat-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .threat-countermeasure {
+      background: rgba(0, 240, 255, 0.06);
+      border-left: 2px solid var(--neon-green);
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: var(--neon-green);
+      font-family: var(--font-code);
+    }
+
+    /* ==========================================================================
+       INTERACTIVE LIVE BROWSER LEAK & FINGERPRINT AUDIT
+       ========================================================================== */
+    .audit-terminal-container {
+      background: var(--bg-terminal);
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.2);
+      padding: 0;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .audit-terminal-header {
+      background: rgba(0, 240, 255, 0.12);
+      border-bottom: 1px solid var(--neon-cyan);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-cyber);
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+    }
+
+    .audit-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 28px;
+      gap: 30px;
+    }
+
+    .leak-param-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .leak-param-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(14, 18, 30, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-family: var(--font-code);
+    }
+    .leak-param-name {
+      color: var(--text-muted);
+    }
+    .leak-param-value {
+      color: var(--neon-cyan);
+      font-weight: 600;
+      text-align: right;
+      max-width: 55%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .audit-score-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(10, 14, 24, 0.7);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 24px;
+    }
+
+    .gauge-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 6px solid var(--neon-pink);
+      box-shadow: 0 0 25px var(--neon-pink), inset 0 0 25px rgba(255, 0, 85, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .gauge-value {
+      font-family: var(--font-cyber);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--neon-pink);
+    }
+    .gauge-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .audit-advice {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .btn-rerun-audit {
+      background: transparent;
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 8px 18px;
+      font-family: var(--font-cyber);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-rerun-audit:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 15px var(--neon-cyan);
+    }
+
+    /* ==========================================================================
+       TOOLS DIRECTORY & LIVE SEARCH / FILTERS
+       ========================================================================== */
+    .tools-control-bar {
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--neon-cyan);
+      font-size: 1.1rem;
+    }
+    .search-tools-input {
+      width: 100%;
+      background: rgba(10, 14, 26, 0.8);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15), inset 0 0 10px rgba(0, 240, 255, 0.05);
+      color: #ffffff;
+      padding: 14px 18px 14px 46px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-tools-input:focus {
+      border-color: var(--neon-yellow);
+      box-shadow: 0 0 25px rgba(252, 227, 0, 0.3);
+    }
+
+    .filters-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      background: rgba(12, 16, 28, 0.7);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: var(--text-muted);
+      padding: 8px 18px;
+      font-family: var(--font-cyber);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    }
+    .filter-btn:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+    }
+    .filter-btn.active {
+      background: var(--neon-cyan);
+      color: #000000;
+      font-weight: 700;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px var(--neon-cyan);
+    }
+
+    .cat-section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 50px 0 24px;
+      border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+      padding-bottom: 10px;
+    }
+    .cat-section-header h3 {
+      font-size: 1.3rem;
+      color: var(--neon-yellow);
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(252, 227, 0, 0.4);
+    }
+    .cat-section-icon {
+      font-size: 1.6rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-left: 4px solid var(--neon-purple);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s ease;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      border-left-color: var(--neon-cyan);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.15);
+      background: var(--bg-card-hover);
+    }
+
+    .tool-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .tool-title {
+      font-size: 1.15rem;
+      color: #ffffff;
+      font-family: var(--font-cyber);
+    }
+
+    .tool-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .badge-cyber {
+      font-family: var(--font-code);
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+    .badge-e2ee { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0, 255, 102, 0.08); }
+    .badge-oss { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(0, 240, 255, 0.08); }
+    .badge-tor { border-color: var(--neon-purple); color: var(--neon-purple); background: rgba(168, 85, 247, 0.08); }
+    .badge-hw { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(252, 227, 0, 0.08); }
+    .badge-audit { border-color: var(--neon-pink); color: var(--neon-pink); background: rgba(255, 0, 85, 0.08); }
+
+    .tool-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .tool-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tool-btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--neon-cyan);
+      font-family: var(--font-cyber);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .tool-btn-link:hover {
+      color: #fff;
+      text-shadow: 0 0 10px var(--neon-cyan);
+      transform: translateX(4px);
+    }
+
+    .aff-tag {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* Affiliate notice banner */
+    .affiliate-notice-box {
+      background: rgba(255, 0, 85, 0.05);
+      border: 1px solid var(--neon-pink);
+      border-left: 4px solid var(--neon-pink);
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+    .affiliate-notice-box strong {
+      color: var(--neon-pink);
+      font-family: var(--font-cyber);
+    }
+
+    /* ==========================================================================
+       PRIVACY ESCALATION ROADMAP (3 TIERS)
+       ========================================================================== */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .roadmap-tier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      padding: 30px 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .roadmap-tier-card.tier-1 { border-top: 4px solid var(--neon-green); }
+    .roadmap-tier-card.tier-2 { border-top: 4px solid var(--neon-cyan); }
+    .roadmap-tier-card.tier-3 { border-top: 4px solid var(--neon-pink); }
+
+    .tier-badge {
+      font-family: var(--font-cyber);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .tier-1 .tier-badge { color: var(--neon-green); }
+    .tier-2 .tier-badge { color: var(--neon-cyan); }
+    .tier-3 .tier-badge { color: var(--neon-pink); }
+
+    .roadmap-tier-card h4 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .roadmap-tier-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .tier-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+    .tier-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text-main);
+    }
+    .tier-check-icon {
+      color: var(--neon-green);
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       SPECIAL FEATURED GUIDE BOX
+       ========================================================================== */
+    .featured-guide-box {
+      background: linear-gradient(135deg, #130d22, #080612);
+      border: 1px solid var(--neon-purple);
+      box-shadow: 0 10px 40px rgba(168, 85, 247, 0.2);
+      padding: 40px 30px;
+      text-align: center;
+      margin: 60px 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .guide-icon {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+    .featured-guide-box h3 {
+      font-size: 1.4rem;
+      color: var(--neon-purple);
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .featured-guide-box p {
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 24px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .guide-cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #9333ea, #6b21a8);
+      color: #ffffff;
+      padding: 12px 32px;
+      font-family: var(--font-cyber);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+      transition: all 0.2s;
+    }
+    .guide-cta-btn:hover {
+      box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       ABOUT & CREATOR SECTION
+       ========================================================================== */
+    .about-box {
+      background: rgba(8, 10, 18, 0.9);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-top: 4px solid var(--neon-cyan);
+      padding: 48px 32px;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .hatty-avatar {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 20px var(--neon-yellow));
+      animation: floatHat 4s infinite ease-in-out;
+    }
+    @keyframes floatHat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .about-box h2 {
+      font-size: 1.8rem;
+      color: var(--neon-cyan);
+      margin-bottom: 16px;
+    }
+    .about-box p {
+      color: var(--text-main);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .creator-links-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .creator-pill-link {
+      background: rgba(255, 0, 85, 0.08);
+      border: 1px solid var(--neon-pink);
+      color: var(--neon-pink);
+      padding: 8px 18px;
+      font-family: var(--font-cyber);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .creator-pill-link:hover {
+      background: var(--neon-pink);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon-pink);
+    }
+
+    /* ==========================================================================
+       FOOTER & BACK TO TOP
+       ========================================================================== */
+    footer {
+      background: #010204;
+      border-top: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 14px 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--neon-cyan);
+      font-family: var(--font-cyber);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .footer-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    /* Back To Top Button */
+    .btn-back-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: rgba(8, 11, 20, 0.9);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+    .btn-back-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .btn-back-top:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 25px var(--neon-cyan);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .manifesto-grid { grid-template-columns: 1fr; }
+      .audit-content-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 12px 16px; }
+      .top-hud-bar { display: none; }
+      .hero-title { font-size: 2rem; }
+      .section-wrap { padding: 60px 16px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .hero-stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- SPLASH -->
-<div id="splash">
-  <div id="splash-scanline"></div>
-  <div id="splash-title">Privacy-Gadgets</div>
-  <div id="splash-sub">Privacy Is a Right, Not a Feature.</div>
-  <div id="splash-credit">Created by <span id="splash-hatty">HattyHats</span></div>
-  <button id="splash-enter">[ ENTER ]</button>
-</div>
+  <!-- MATRIX RAIN BACKGROUND CANVAS -->
+  <canvas id="matrix-canvas"></canvas>
+  <div class="cyber-grid-bg"></div>
 
-<!-- CODE RAIN -->
-<div class="code-rain" aria-hidden="true">
-  <div class="code-column">0100100001000101
-0101001001000101
-0100111001000001
-0100110001001100</div>
-  <div class="code-column">1010101011001100
-0011001101010101
-1111000000001111
-0101010110101010</div>
-  <div class="code-column">0110111001100111
-0100001001100101
-0111001001100101
-0110011001110010</div>
-  <div class="code-column">1100001011010010
-1001111011010111
-0010100101001101
-1010100001001100</div>
-  <div class="code-column">0101001101001000
-0100000101001100
-0100110000000000
-0101010001001000</div>
-  <div class="code-column">0011000100110000
-0011001000110110
-0011000000110000
-0011001000110000</div>
-  <div class="code-column">1110010101101110
-1100011101110101
-1101001101100111
-1110011001100111</div>
-</div>
+  <!-- AUTOMATED CYBER BOOT SPLASH SCREEN -->
+  <div id="splash-screen">
+    <div class="splash-terminal-box">
+      <div class="splash-header-bar">
+        <span>SECURITY_LAYER://BOOT_INIT</span>
+        <div class="splash-dots">
+          <div class="splash-dot red"></div>
+          <div class="splash-dot yellow"></div>
+          <div class="splash-dot green"></div>
+        </div>
+      </div>
+      <div class="splash-body">
+        <div>
+          <div class="splash-title-brand">PRIVACY-<span>GADGETS</span></div>
+          <div class="splash-subtitle">Privacy is a Right, Not a Feature.</div>
+        </div>
 
-<!-- HEADER -->
-<header>
-  <div class="logo-text" id="headerLogo">Privacy-<span>Gadgets</span></div>
-  <nav>
-    <div class="nav-toggle" id="navToggle">
-      <span>HattyHats Projects</span>
-      <div class="icon">
-        <span></span><span></span><span></span>
+        <div class="splash-logs" id="splash-log-container">
+          <div class="splash-log-line"><span class="tag-cyan">&gt;</span> Initializing Zero-Knowledge Kernel...</div>
+        </div>
+
+        <div class="splash-progress-container">
+          <div class="splash-progress-meta">
+            <span id="splash-status-text">NEUTRALIZING BIG TECH TRACKERS...</span>
+            <span id="splash-percent-text">0%</span>
+          </div>
+          <div class="splash-progress-track">
+            <div class="splash-progress-bar" id="splash-progress-bar"></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="nav-dropdown" id="navDropdown">
-      <a href="https://earnwithhatty.com/" target="_blank" rel="noopener">🎓 Learn With Hatty</a>
-      <a href="https://earn-with-hatty-tools.netlify.app/" target="_blank" rel="noopener">🛠 Hatty's Tools</a>
-      <a href="https://hattys-media.netlify.app/" target="_blank" rel="noopener">🎬 Hatty's Media</a>
-      <a href="https://hatty-universe.netlify.app/" target="_blank" rel="noopener">🌌 Hatty's Universe</a>
-      <a href="https://hattys-news.netlify.app/" target="_blank" rel="noopener">📰 Hatty's News</a>
-      <a href="https://hattyhats.github.io/Open-Focus/" target="_blank" rel="noopener">🎯 Open-Focus</a>
-      <a href="https://orbit-node.netlify.app/" target="_blank" rel="noopener">🪐 OrbitNode</a>
-      <a href="https://case-board.netlify.app/" target="_blank" rel="noopener">📋 Case-Board</a>
-    </div>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-lock">
-    <img src="lock.png" alt="Privacy Lock" />
-  </div>
-  <div class="hero-text-wrap" id="heroText">
-    <h2>Privacy Is a Right, Not a Feature.</h2>
-    <p>Vetted open-source privacy tools and gadgets for crypto, Web3, AI, and everyday digital life. Curated by HattyHats — no hype, no data harvesting, just tools that actually protect you.</p>
-    <a href="#tools" class="cta">Explore the Tools</a>
-  </div>
-  <div class="scroll-hint">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="#f0a500"><path d="M12 16l-6-6h12z"/></svg>
-    SCROLL
-  </div>
-</section>
-
-
-
-<!-- TOOLS -->
-<div class="container" id="tools">
-  <h2 class="sec-title">Privacy Gadgets & Tools</h2>
-  <p class="sec-desc">Every tool below is open-source or community-driven, privacy-respecting, and genuinely useful. Some links are affiliate links — they support the channel at no extra cost to you.</p>
-  <div class="disclaimer"><strong>Affiliate Disclosure:</strong> Links marked with "aff" may earn a small commission if you purchase through them. This never affects which tools get listed — only tools HattyHats actually uses or trusts make the cut.</div>
-
-  <div class="filters" id="filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="hardware">Hardware</button>
-    <button class="filter-btn" data-filter="browser">Browsers</button>
-    <button class="filter-btn" data-filter="search">Search</button>
-    <button class="filter-btn" data-filter="messaging">Messaging</button>
-    <button class="filter-btn" data-filter="email">Email</button>
-    <button class="filter-btn" data-filter="vpn">VPN / Network</button>
-    <button class="filter-btn" data-filter="password">Passwords</button>
-    <button class="filter-btn" data-filter="selfhost">Self-Hosted / OS</button>
-    <button class="filter-btn" data-filter="crypto">Crypto / Web3</button>
+    <div class="splash-skip-hint" id="splash-skip-trigger">[ Press any key or click anywhere to skip boot sequence ]</div>
   </div>
 
-  <div id="tools-grid">
-
-    <div class="cat-header" data-cat="hardware"><span class="cat-icon">🔑</span><h3>Hardware Security</h3></div>
-    <div class="tools-grid" data-cat="hardware">
-      <div class="tool-card" data-categories="hardware">
-        <h4>YubiKey 5 NFC <span class="badge">2FA key</span></h4>
-        <p class="tool-tagline">Phishing-resistant hardware security key for your most important accounts. Just tap or plug in — stops account takeovers cold.</p>
-        <a class="tool-link" href="https://amzn.to/4l4LK7i" target="_blank" rel="noopener">Shop on Amazon</a>
-        <span class="aff-note">aff link</span>
-      </div>
-      <div class="tool-card" data-categories="hardware crypto">
-        <h4>Ledger Hardware Wallet <span class="badge">cold storage</span></h4>
-        <p class="tool-tagline">The most widely trusted hardware crypto wallet. Keep your private keys offline and away from any browser or internet-connected device.</p>
-        <a class="tool-link" href="https://amzn.to/4dw4Lxw" target="_blank" rel="noopener">Shop on Amazon</a>
-        <span class="aff-note">aff link</span>
-      </div>
-      <div class="tool-card" data-categories="hardware">
-        <h4>Privacy Screen Protector <span class="badge">visual privacy</span></h4>
-        <p class="tool-tagline">Physical screen filters that block shoulder surfing — anyone beside you sees nothing. Essential for public places and travel.</p>
-        <a class="tool-link" href="https://amzn.to/4sfcKne" target="_blank" rel="noopener">Browse on Amazon</a>
-        <span class="aff-note">aff link</span>
-      </div>
+  <!-- TOP STATUS HUD -->
+  <div class="top-hud-bar">
+    <div class="hud-stat-item">
+      <div class="hud-indicator"></div>
+      <span>SYS_DEFENSE: ACTIVE</span>
     </div>
-
-    <div class="cat-header" data-cat="browser"><span class="cat-icon">🌐</span><h3>Privacy Browsers</h3></div>
-    <div class="tools-grid" data-cat="browser">
-      <div class="tool-card" data-categories="browser">
-        <h4>Brave Browser <span class="badge badge-browser">browser</span></h4>
-        <p class="tool-tagline">Chromium-based browser with built-in ad and tracker blocking, Tor integration, and optional crypto rewards. Open source, fast, and no Google telemetry.</p>
-        <a class="tool-link" href="https://brave.com/" target="_blank" rel="noopener">Get Brave</a>
-      </div>
-      <div class="tool-card" data-categories="browser">
-        <h4>Firefox <span class="badge badge-browser">browser</span></h4>
-        <p class="tool-tagline">The gold-standard open-source browser from Mozilla. Hardened with uBlock Origin and privacy-focused settings it's one of the most configurable options available.</p>
-        <a class="tool-link" href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener">Get Firefox</a>
-      </div>
-      <div class="tool-card" data-categories="browser">
-        <h4>Tor Browser <span class="badge badge-browser">browser</span></h4>
-        <p class="tool-tagline">Routes your traffic through the Tor anonymity network, masking your IP and location. Best option when maximum anonymity is required, not just privacy.</p>
-        <a class="tool-link" href="https://www.torproject.org/" target="_blank" rel="noopener">Get Tor Browser</a>
-      </div>
-      <div class="tool-card" data-categories="browser">
-        <h4>LibreWolf <span class="badge badge-browser">browser</span></h4>
-        <p class="tool-tagline">A hardened Firefox fork with telemetry stripped out, strict privacy defaults, and uBlock Origin pre-installed. Zero compromise out of the box.</p>
-        <a class="tool-link" href="https://librewolf.net/" target="_blank" rel="noopener">Get LibreWolf</a>
-      </div>
+    <div class="hud-stat-item">
+      <span>TELEMETRY_BLOCK: 100%</span>
     </div>
-
-    <div class="cat-header" data-cat="search"><span class="cat-icon">🔍</span><h3>Private Search Engines</h3></div>
-    <div class="tools-grid" data-cat="search">
-      <div class="tool-card" data-categories="search">
-        <h4>DuckDuckGo <span class="badge badge-search">search</span></h4>
-        <p class="tool-tagline">No tracking, no personalized profiles, no filter bubbles. The most widely adopted private search engine — easy Google replacement for everyday use.</p>
-        <a class="tool-link" href="https://duckduckgo.com/" target="_blank" rel="noopener">Use DuckDuckGo</a>
-      </div>
-      <div class="tool-card" data-categories="search">
-        <h4>Brave Search <span class="badge badge-search">search</span></h4>
-        <p class="tool-tagline">Independent search index built by the Brave team. Private by default, no tracking, growing fast in result quality.</p>
-        <a class="tool-link" href="https://search.brave.com/" target="_blank" rel="noopener">Use Brave Search</a>
-      </div>
-      <div class="tool-card" data-categories="search">
-        <h4>SearXNG <span class="badge badge-search">search</span></h4>
-        <p class="tool-tagline">A fully open-source, self-hostable metasearch engine that aggregates results from dozens of sources. Run your own instance for complete control.</p>
-        <a class="tool-link" href="https://github.com/searxng/searxng" target="_blank" rel="noopener">View on GitHub</a>
-      </div>
-      <div class="tool-card" data-categories="search">
-        <h4>Kagi <span class="badge badge-search">search</span></h4>
-        <p class="tool-tagline">Subscription-based search with no ads and no data collection. Exceptional result quality — paid model means you are the customer, not the product.</p>
-        <a class="tool-link" href="https://kagi.com/" target="_blank" rel="noopener">Try Kagi</a>
-      </div>
+    <div class="hud-stat-item">
+      <span>ZERO-KNOWLEDGE PROTOCOL ENGAGED</span>
     </div>
-
-    <div class="cat-header" data-cat="messaging"><span class="cat-icon">💬</span><h3>Encrypted Messaging</h3></div>
-    <div class="tools-grid" data-cat="messaging">
-      <div class="tool-card" data-categories="messaging">
-        <h4>Signal <span class="badge badge-msg">messaging</span></h4>
-        <p class="tool-tagline">End-to-end encrypted messaging and calls, developed by a non-profit. Open source, minimal metadata, and the gold standard for private communication.</p>
-        <a class="tool-link" href="https://signal.org/" target="_blank" rel="noopener">Get Signal</a>
-      </div>
-      <div class="tool-card" data-categories="messaging">
-        <h4>Element (Matrix) <span class="badge badge-msg">messaging</span></h4>
-        <p class="tool-tagline">Decentralized, federated messaging on the open Matrix protocol. Self-host your own server or join a public one — no single company controls your data.</p>
-        <a class="tool-link" href="https://element.io/" target="_blank" rel="noopener">Get Element</a>
-      </div>
-      <div class="tool-card" data-categories="messaging">
-        <h4>Session <span class="badge badge-msg">messaging</span></h4>
-        <p class="tool-tagline">No phone number required, no central servers, built on a decentralized network. Fully anonymous accounts and onion-routing for metadata privacy.</p>
-        <a class="tool-link" href="https://getsession.org/" target="_blank" rel="noopener">Get Session</a>
-      </div>
-      <div class="tool-card" data-categories="messaging">
-        <h4>Briar <span class="badge badge-msg">messaging</span></h4>
-        <p class="tool-tagline">Peer-to-peer encrypted messaging that works without internet via Bluetooth or WiFi. Built for activists and journalists operating in hostile environments.</p>
-        <a class="tool-link" href="https://briarproject.org/" target="_blank" rel="noopener">Get Briar</a>
-      </div>
-    </div>
-
-    <div class="cat-header" data-cat="email"><span class="cat-icon">✉️</span><h3>Private Email</h3></div>
-    <div class="tools-grid" data-cat="email">
-      <div class="tool-card" data-categories="email">
-        <h4>Proton Mail <span class="badge">encrypted email</span></h4>
-        <p class="tool-tagline">End-to-end encrypted email hosted in Switzerland. Zero-access architecture means even Proton can't read your inbox. Open-source client apps.</p>
-        <a class="tool-link" href="https://account.proton.me/mail" target="_blank" rel="noopener">Get Proton Mail</a>
-      </div>
-      <div class="tool-card" data-categories="email">
-        <h4>Tutanota <span class="badge">encrypted email</span></h4>
-        <p class="tool-tagline">Open-source encrypted email from Germany with calendar and contacts. Free tier available, no IP logging, strong track record of resisting legal requests.</p>
-        <a class="tool-link" href="https://tuta.com/" target="_blank" rel="noopener">Get Tutanota</a>
-      </div>
-      <div class="tool-card" data-categories="email">
-        <h4>SimpleLogin <span class="badge">email alias</span></h4>
-        <p class="tool-tagline">Open-source email alias service — generate unique forwarding addresses for every site so your real inbox stays hidden and spam stays contained.</p>
-        <a class="tool-link" href="https://simplelogin.io/" target="_blank" rel="noopener">Get SimpleLogin</a>
-      </div>
-    </div>
-
-    <div class="cat-header" data-cat="vpn"><span class="cat-icon">🛡️</span><h3>VPN & Network Privacy</h3></div>
-    <div class="tools-grid" data-cat="vpn">
-      <div class="tool-card" data-categories="vpn">
-        <h4>Mysterium VPN <span class="badge badge-vpn">decentralized VPN</span></h4>
-        <p class="tool-tagline">Decentralized VPN powered by real residential nodes. WireGuard encryption, no-logs design, and genuine IP diversity — harder to block than centralized VPNs.</p>
-        <a class="tool-link" href="https://www.mysteriumvpn.com/" target="_blank" rel="noopener">Get Mysterium VPN</a>
-      </div>
-      <div class="tool-card" data-categories="vpn crypto">
-        <h4>Myst Nodes <span class="badge badge-earn">earn + privacy</span></h4>
-        <p class="tool-tagline">Run a node in the Mysterium Network — share your bandwidth, earn crypto, and power censorship-resistant VPN infrastructure for others.</p>
-        <a class="tool-link" href="https://mystnodes.co/?referral_code=CShcPZo3nIaNVELh9ACc0HbBGPUx4ADZKEsOeg4S" target="_blank" rel="noopener">Run a Myst Node</a>
-        <span class="aff-note">aff link</span>
-      </div>
-      <div class="tool-card" data-categories="vpn">
-        <h4>Mullvad VPN <span class="badge badge-vpn">VPN</span></h4>
-        <p class="tool-tagline">No-logs, no-account, cash-payment accepted. One of the most respected privacy VPNs — open-source client, WireGuard & OpenVPN, independently audited.</p>
-        <a class="tool-link" href="https://mullvad.net/" target="_blank" rel="noopener">Get Mullvad</a>
-      </div>
-      <div class="tool-card" data-categories="vpn selfhost">
-        <h4>WireGuard <span class="badge badge-vpn">open protocol</span></h4>
-        <p class="tool-tagline">Modern, lean, blazing-fast open-source VPN protocol. Self-host your own VPN server on a cheap VPS for complete control over your tunnel.</p>
-        <a class="tool-link" href="https://www.wireguard.com/" target="_blank" rel="noopener">WireGuard.com</a>
-      </div>
-      <div class="tool-card" data-categories="vpn">
-        <h4>Pi-hole <span class="badge badge-vpn">DNS ad blocker</span></h4>
-        <p class="tool-tagline">Network-level ad and tracker blocking via your own DNS server on a Raspberry Pi or any Linux machine. Blocks ads for every device on your home network.</p>
-        <a class="tool-link" href="https://pi-hole.net/" target="_blank" rel="noopener">Pi-hole.net</a>
-      </div>
-    </div>
-
-    <div class="cat-header" data-cat="password"><span class="cat-icon">🗝️</span><h3>Password Managers</h3></div>
-    <div class="tools-grid" data-cat="password">
-      <div class="tool-card" data-categories="password">
-        <h4>Bitwarden <span class="badge badge-pw">open source</span></h4>
-        <p class="tool-tagline">Fully open-source password manager with self-hosting option. Free tier is genuinely excellent, audited independently multiple times.</p>
-        <a class="tool-link" href="https://bitwarden.com/" target="_blank" rel="noopener">Get Bitwarden</a>
-      </div>
-      <div class="tool-card" data-categories="password selfhost">
-        <h4>KeePassXC <span class="badge badge-pw">local storage</span></h4>
-        <p class="tool-tagline">Offline, local password manager — your vault never leaves your device. Cross-platform, open-source, and trusted by security professionals.</p>
-        <a class="tool-link" href="https://keepassxc.org/" target="_blank" rel="noopener">Get KeePassXC</a>
-      </div>
-      <div class="tool-card" data-categories="password">
-        <h4>Proton Pass <span class="badge badge-pw">encrypted</span></h4>
-        <p class="tool-tagline">End-to-end encrypted password manager from the Proton ecosystem. Open source, integrates with Proton Mail and VPN, with built-in email alias generation.</p>
-        <a class="tool-link" href="https://proton.me/pass" target="_blank" rel="noopener">Get Proton Pass</a>
-      </div>
-    </div>
-
-    <div class="cat-header" data-cat="selfhost"><span class="cat-icon">🖥️</span><h3>Self-Hosted & Privacy OS</h3></div>
-    <div class="tools-grid" data-cat="selfhost">
-      <div class="tool-card" data-categories="selfhost">
-        <h4>Tails OS <span class="badge badge-os">amnesic OS</span></h4>
-        <p class="tool-tagline">A live operating system you boot from USB. Routes all traffic through Tor, leaves no trace on the computer, resets completely on every reboot.</p>
-        <a class="tool-link" href="https://tails.boum.org/" target="_blank" rel="noopener">Get Tails OS</a>
-      </div>
-      <div class="tool-card" data-categories="selfhost">
-        <h4>Qubes OS <span class="badge badge-os">compartmentalized OS</span></h4>
-        <p class="tool-tagline">Security-by-compartmentalization — runs every app in an isolated virtual machine so a single compromised app can't touch the rest of your system.</p>
-        <a class="tool-link" href="https://www.qubes-os.org/" target="_blank" rel="noopener">Get Qubes OS</a>
-      </div>
-      <div class="tool-card" data-categories="selfhost">
-        <h4>Nextcloud <span class="badge badge-self">self-hosted cloud</span></h4>
-        <p class="tool-tagline">Open-source self-hosted alternative to Google Drive, Docs, and Calendar. Your data, your server, no subscription fees.</p>
-        <a class="tool-link" href="https://nextcloud.com/" target="_blank" rel="noopener">Visit Nextcloud</a>
-      </div>
-      <div class="tool-card" data-categories="selfhost">
-        <h4>Syncthing <span class="badge badge-self">file sync</span></h4>
-        <p class="tool-tagline">Peer-to-peer file synchronization between your own devices — no cloud, no third-party server, fully encrypted in transit.</p>
-        <a class="tool-link" href="https://syncthing.net/" target="_blank" rel="noopener">Get Syncthing</a>
-      </div>
-      <div class="tool-card" data-categories="selfhost">
-        <h4>GrapheneOS <span class="badge badge-os">hardened Android</span></h4>
-        <p class="tool-tagline">Hardened Android fork for Google Pixel devices. Strips out Google surveillance layer, sandboxed app compatibility, regular security patches.</p>
-        <a class="tool-link" href="https://grapheneos.org/" target="_blank" rel="noopener">Get GrapheneOS</a>
-      </div>
-    </div>
-
-    <div class="cat-header" data-cat="crypto"><span class="cat-icon">🔐</span><h3>Crypto & Web3 Privacy</h3></div>
-    <div class="tools-grid" data-cat="crypto">
-      <div class="tool-card" data-categories="crypto">
-        <h4>Midnight Network <span class="badge">privacy chain</span></h4>
-        <p class="tool-tagline">Data-protection focused blockchain built for confidential smart contracts and privacy-preserving Web3 applications.</p>
-        <a class="tool-link" href="https://midnight.network/" target="_blank" rel="noopener">Midnight Network</a>
-      </div>
-      <div class="tool-card" data-categories="crypto">
-        <h4>Monero (XMR) <span class="badge">privacy coin</span></h4>
-        <p class="tool-tagline">The leading privacy-focused cryptocurrency. Ring signatures and stealth addresses make every transaction untraceable by default.</p>
-        <a class="tool-link" href="https://www.getmonero.org/" target="_blank" rel="noopener">GetMonero.org</a>
-      </div>
-      <div class="tool-card" data-categories="crypto">
-        <h4>VeraCrypt <span class="badge">disk encryption</span></h4>
-        <p class="tool-tagline">Open-source disk and volume encryption. Create an encrypted vault on a USB stick for cold-storing seed phrases and keys offline.</p>
-        <a class="tool-link" href="https://www.veracrypt.fr/" target="_blank" rel="noopener">VeraCrypt.fr</a>
-      </div>
-      <div class="tool-card" data-categories="crypto">
-        <h4>Coinomi Wallet <span class="badge">multi-coin wallet</span></h4>
-        <p class="tool-tagline">Multi-chain, non-custodial mobile wallet that supports hundreds of coins and tokens. Pair with VeraCrypt for an improvised cold-storage setup.</p>
-        <a class="tool-link" href="https://www.coinomi.com/" target="_blank" rel="noopener">Coinomi.com</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div style="margin-top:52px;background:linear-gradient(145deg,#1a1226,#0f0a1a);border:1px solid #a78bfa40;border-radius:14px;padding:28px 24px;text-align:center;box-shadow:0 0 30px #a78bfa10,0 8px 32px #00000060">
-    <div style="font-size:2rem;margin-bottom:12px">📖</div>
-    <h3 style="color:#a78bfa;font-size:1.1rem;margin-bottom:10px">Guide: Build an Encrypted USB Crypto Vault</h3>
-    <p style="color:#999;font-size:.88rem;max-width:560px;margin:0 auto 18px;line-height:1.7">A step-by-step walkthrough on turning any USB stick into an encrypted crypto vault using VeraCrypt and Coinomi.</p>
-    <a href="https://www.bulbapp.io/p/fd94544b-7ad7-42fc-ba43-da4237f830e7/turn-any-usb-stick-into-a-crypto-vault-veracrypt-coinomi-and-the-truth-about-coldstorage" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(180deg,#9f7aea,#6d28d9);color:#fff;padding:11px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.88rem;box-shadow:0 0 20px #a78bfa40,0 4px 12px #00000060">Read the Full Guide →</a>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="about-section" id="about">
-  <div class="container">
-    <div class="about-inner">
-      <div class="hat">🎩</div>
-      <h2>About HattyHats</h2>
-      <p>Content creator, blockchain enthusiast, and tech writer covering crypto, AI, privacy, and Web3 across multiple platforms.</p>
-      <p>PrivacyGadgets Hub is a curated list of tools HattyHats actually uses and trusts — not whatever's paying the highest commission. If it's here, it earned its place.</p>
-      <div class="about-links">
-        <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener">Main Site</a>
-        <a href="https://x.com/hatty_hats" target="_blank" rel="noopener">X (Twitter)</a>
-        <a href="https://www.youtube.com/@hattyhats0" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://learn-with-hatty.printify.me/" target="_blank" rel="noopener">Merch</a>
-        <a href="https://cash.app/$hattyhatss" target="_blank" rel="noopener">Support via Cash App</a>
-      </div>
+    <div class="hud-stat-item">
+      <span id="hud-clock">00:00:00 UTC</span>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <p>&copy; 2026 Privacy-Gadgets Hub by HattyHats. Vetted for your privacy.</p>
-  <p style="margin-top:10px">
-    <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener">Main Site</a> |
-    <a href="https://x.com/hatty_hats" target="_blank" rel="noopener">X (Twitter)</a> |
-    <a href="https://www.youtube.com/@hattyhats0" target="_blank" rel="noopener">YouTube</a>
-  </p>
-  <p style="margin-top:8px;font-size:.7rem;color:#333">Some links are affiliate links. All tools are independently vetted.</p>
-</footer>
+  <!-- HEADER NAVIGATION -->
+  <header>
+    <div class="logo-container">
+      <span class="logo-shield-icon">🛡️</span>
+      <div class="logo-text">Privacy-<span>Gadgets</span></div>
+    </div>
 
-<script>
-(function() {
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#manifesto">Manifesto</a></li>
+        <li><a href="#surveillance">Surveillance Expose</a></li>
+        <li><a href="#leak-test">Leak Audit</a></li>
+        <li><a href="#tools">Tools Directory</a></li>
+        <li><a href="#roadmap">Defense Roadmap</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
 
-  /* ========================================
-     SPLASH — everything done with JS only
-     ======================================== */
-  var splash  = document.getElementById('splash');
-  var title   = document.getElementById('splash-title');
-  var sub     = document.getElementById('splash-sub');
-  var credit  = document.getElementById('splash-credit');
-  var hatty   = document.getElementById('splash-hatty');
-  var enterBtn= document.getElementById('splash-enter');
+      <!-- HattyHats Ecosystem Dropdown -->
+      <div class="ecosystem-dropdown-wrapper">
+        <button class="ecosystem-toggle-btn" id="ecosystemBtn">
+          <span>Hatty Projects</span>
+          <span style="font-size:0.7rem;">▼</span>
+        </button>
+        <div class="ecosystem-menu" id="ecosystemMenu">
+          <a href="https://earnwithhatty.com/" target="_blank" rel="noopener">🎓 Learn With Hatty</a>
+          <a href="https://hatsquickpad.netlify.app" target="_blank" rel="noopener">📝 Quick-Pad</a>
+          <a href="https://hattyhats.github.io/local-cast" target="_blank" rel="noopener">📡 Local-Cast</a>
+          <a href="https://data-phone-app.onrender.com" target="_blank" rel="noopener">📱 Data-Phone</a>
+          <a href="https://hattyhats.github.io/Open-Focus" target="_blank" rel="noopener">🎯 Open Focus</a>
+          <a href="https://case-board.netlify.app" target="_blank" rel="noopener">📋 CaseBoard</a>
+          <a href="https://hattys-news.netlify.app" target="_blank" rel="noopener">📰 Hattys News</a>
+          <a href="https://hatty-universe.netlify.app" target="_blank" rel="noopener">🌌 Hattys Universe</a>
+          <a href="https://hattyhats.github.io/chill-with-hatty" target="_blank" rel="noopener">☕ Chill With Hatty</a>
+          <a href="https://hattyhats.github.io/StellarAssault" target="_blank" rel="noopener">🚀 Stellar Assault</a>
+          <a href="https://hattyhats.github.io/voi-maze" target="_blank" rel="noopener">🌀 Voi-Maze</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-  /* Fade in each element by setting opacity via JS */
-  function fadeIn(el, delay) {
-    el.style.transition = 'opacity 1s ease, transform 1s ease';
-    el.style.transform  = 'translateY(14px)';
-    setTimeout(function() {
-      el.style.opacity   = '1';
-      el.style.transform = 'translateY(0)';
-    }, delay);
-  }
+  <!-- HERO SECTION -->
+  <section class="hero-section" id="home">
+    <div class="hero-lock-wrap">
+      <img src="lock.png" alt="Privacy Lock Hardware Fortress" />
+    </div>
 
-  fadeIn(title,   300);
-  fadeIn(sub,    1300);
-  fadeIn(credit, 2300);
-  fadeIn(enterBtn, 3200);
+    <div class="hero-tag">[ DEFEND YOUR DIGITAL SOVEREIGNTY ]</div>
+    <h1 class="hero-title">
+      Privacy Is a <span class="highlight-gold">Fundamental Right</span>,<br>Not a Luxury Feature.
+    </h1>
+    <p class="hero-desc">
+      Your thoughts, biometric telemetry, searches, and location are harvested and sold in real-time auctions every millisecond. Arm yourself with vetted open-source software, physical hardware keys, zero-knowledge encryption, and decentralized networks curated by HattyHats.
+    </p>
 
-  /* ---- Glitch: directly set inline style frames ---- */
-  function glitch(el, frames, msPerFrame, done) {
-    var i = 0;
-    function step() {
-      if (i < frames.length) {
-        var f = frames[i++];
-        el.style.cssText += ';text-shadow:' + f[0] + ';transform:' + f[1];
-        setTimeout(step, msPerFrame);
-      } else {
-        if (done) done();
+    <div class="hero-actions">
+      <a href="#tools" class="btn-cyber-primary">⚡ Explore Privacy Arsenal</a>
+      <a href="#leak-test" class="btn-cyber-secondary">🔍 Test Your Browser Exposure</a>
+    </div>
+
+    <div class="hero-stat-grid">
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">2,500+</div>
+        <div class="hero-stat-label">Data Points Collected Per User Daily</div>
+      </div>
+      <div class="hero-stat-card" style="border-left-color: var(--neon-pink);">
+        <div class="hero-stat-num" style="color: var(--neon-pink); text-shadow: 0 0 12px var(--neon-pink);">88%</div>
+        <div class="hero-stat-label">Websites Tracking Without Explicit Consent</div>
+      </div>
+      <div class="hero-stat-card" style="border-left-color: var(--neon-yellow);">
+        <div class="hero-stat-num" style="color: var(--neon-yellow); text-shadow: 0 0 12px var(--neon-yellow);">$240B+</div>
+        <div class="hero-stat-label">Global Surveillance Data Broker Economy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO SECTION -->
+  <section class="section-wrap" id="manifesto">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-badge">CYBER PHILOSOPHY</div>
+        <h2 class="section-title">The Privacy <span>Manifesto</span></h2>
+        <p class="section-desc">Why digital secrecy is the bedrock of human autonomy, intellectual freedom, and personal liberty.</p>
+      </div>
+
+      <div class="manifesto-grid">
+        <div class="manifesto-quote-card">
+          <h3>"I Have Nothing to Hide" is a Dangerous Lie</h3>
+          <p>
+            Arguing that you don't care about the right to privacy because you have nothing to hide is no different than saying you don't care about free speech because you have nothing to say.
+          </p>
+          <p>
+            Privacy isn't about hiding shame or wrongdoings — it is about maintaining autonomy over your identity. When centralized monopolies and algorithms predict your actions, manipulate your feeds, and monetize your vulnerabilities, freedom ceases to exist.
+          </p>
+          <p style="color: var(--neon-yellow); font-weight: 700; font-family: var(--font-cyber);">
+            — Privacy is not a privilege conceded by Big Tech; it is an inalienable right.
+          </p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="pillar-card" style="border-left: 4px solid var(--neon-cyan);">
+            <h4>🔒 Zero Trust by Design</h4>
+            <p>Never rely on a corporation's privacy policy. Code, client-side encryption keys, and mathematical proofs must replace blind trust.</p>
+          </div>
+          <div class="pillar-card" style="border-left: 4px solid var(--neon-green);">
+            <h4>💻 Open-Source Sovereignty</h4>
+            <p>If software isn't open-source and auditable, you are not the user — you are the monitored entity inside a black box.</p>
+          </div>
+          <div class="pillar-card" style="border-left: 4px solid var(--neon-pink);">
+            <h4>🌐 Decentralized Immunity</h4>
+            <p>Centralized servers create centralized choke points for mass subpoenas, data breaches, and unilateral deplatforming.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 INVIOLABLE PILLARS -->
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🔑</div>
+          <h4>1. Zero-Knowledge</h4>
+          <p>The service provider stores only cryptographically sealed ciphertext. Even with a subpoena, they physically cannot read your data.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🛡️</div>
+          <h4>2. End-to-End Encryption</h4>
+          <p>Data is locked on your local device and only unlocked by the verified recipient. No man-in-the-middle interception.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">⚡</div>
+          <h4>3. Self-Custody Keys</h4>
+          <p>Your hardware security keys and offline vaults ensure your digital wealth and authentication credentials never touch unverified clouds.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🧅</div>
+          <h4>4. Metadata Neutralization</h4>
+          <p>Content encryption is useless if your communication metadata (who you talk to, when, and where) is logged. Onion-routing shields metadata.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SURVEILLANCE ENGINE SECTION -->
+  <section class="section-wrap" id="surveillance">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-badge">DEEP DIVE EXPOSE</div>
+        <h2 class="section-title">How Big Tech <span>Steals & Sells</span> Your Life</h2>
+        <p class="section-desc">Understanding the stealth weapons of surveillance capitalism: from canvas fingerprinting to automated content recognition.</p>
+      </div>
+
+      <div class="surveillance-grid">
+        <!-- Threat 1 -->
+        <div class="threat-card">
+          <div class="threat-header">
+            <span class="threat-tag">SURVEILLANCE VECTOR 01</span>
+            <span style="font-size:1.3rem;">🧬</span>
+          </div>
+          <h4>Browser Canvas & Hardware Fingerprinting</h4>
+          <p>Even in "Incognito Mode" without cookies, websites render invisible graphics on your GPU, query your sound card, and count installed system fonts to generate a 99.9% unique identifier tied to your identity.</p>
+          <div class="threat-countermeasure">
+            &gt; COUNTERMEASURE: LibreWolf, Tor Browser, or CanvasBlocker
+          </div>
+        </div>
+
+        <!-- Threat 2 -->
+        <div class="threat-card">
+          <div class="threat-header">
+            <span class="threat-tag">SURVEILLANCE VECTOR 02</span>
+            <span style="font-size:1.3rem;">💼</span>
+          </div>
+          <h4>Data Brokers & Real-Time Bidding (RTB)</h4>
+          <p>Unregulated data brokers (Acxiom, Experian, Oracle) buy credit card histories, GPS breadcrumbs, and medical search logs, bundling them into behavioral dossiers auctioned off milliseconds before web pages load.</p>
+          <div class="threat-countermeasure">
+            &gt; COUNTERMEASURE: NextDNS, Pi-hole, SimpleLogin email aliases
+          </div>
+        </div>
+
+        <!-- Threat 3 -->
+        <div class="threat-card">
+          <div class="threat-header">
+            <span class="threat-tag">SURVEILLANCE VECTOR 03</span>
+            <span style="font-size:1.3rem;">🤖</span>
+          </div>
+          <h4>OS Telemetry & AI Mass Ingestion</h4>
+          <p>Modern commercial operating systems log key events, diagnostic dumps, and clipboard data. Major cloud AI models routinely vacuum unencrypted cloud drives and emails without explicit user awareness.</p>
+          <div class="threat-countermeasure">
+            &gt; COUNTERMEASURE: Tails OS, Qubes OS, GrapheneOS, Proton
+          </div>
+        </div>
+
+        <!-- Threat 4 -->
+        <div class="threat-card">
+          <div class="threat-header">
+            <span class="threat-tag">SURVEILLANCE VECTOR 04</span>
+            <span style="font-size:1.3rem;">📡</span>
+          </div>
+          <h4>Smart TV ACR & Ambient Eavesdropping</h4>
+          <p>Smart TVs and ambient home assistants use Automated Content Recognition (ACR) to analyze the pixels on your screen every second, identifying what you watch and syncing with your mobile ad profile.</p>
+          <div class="threat-countermeasure">
+            &gt; COUNTERMEASURE: Network-level Pi-hole DNS sinkholes & Faraday bags
+          </div>
+        </div>
+
+        <!-- Threat 5 -->
+        <div class="threat-card">
+          <div class="threat-header">
+            <span class="threat-tag">SURVEILLANCE VECTOR 05</span>
+            <span style="font-size:1.3rem;">📍</span>
+          </div>
+          <h4>Mobile Advertising IDs & Geo-Beacons</h4>
+          <p>Mobile SDKs constantly transmit your device's GAID/IDFA alongside Wi-Fi SSID scans and Bluetooth beacons, allowing aggregators to know precisely when two specific individuals are in the same room.</p>
+          <div class="threat-countermeasure">
+            &gt; COUNTERMEASURE: GrapheneOS sandboxed Google Play, Faraday sleeves
+          </div>
+        </div>
+
+        <!-- Threat 6 -->
+        <div class="threat-card">
+          <div class="threat-header">
+            <span class="threat-tag">SURVEILLANCE VECTOR 06</span>
+            <span style="font-size:1.3rem;">💳</span>
+          </div>
+          <h4>Financial Surveillance & CBDCs</h4>
+          <p>Every digital payment card transaction is logged, categorized, and shared with fraud algorithms and marketing networks. Financial surveillance allows arbitrary freezing of assets without trial.</p>
+          <div class="threat-countermeasure">
+            &gt; COUNTERMEASURE: Monero (XMR), VeraCrypt offline cold storage
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE BROWSER LEAK TEST -->
+  <section class="section-wrap" id="leak-test">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-badge">INTERACTIVE AUDIT</div>
+        <h2 class="section-title">Live Client <span>Leak & Fingerprint</span> Scanner</h2>
+        <p class="section-desc">Here is what any tracker or script on the web can instantly see about your machine right now without asking for permission.</p>
+      </div>
+
+      <div class="audit-terminal-container">
+        <div class="audit-terminal-header">
+          <span>TERMINAL://BROWSER_SURVEILLANCE_INSPECTOR</span>
+          <span>STATUS: AUDIT_COMPLETE</span>
+        </div>
+
+        <div class="audit-content-grid">
+          <div class="leak-param-list">
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; Screen Resolution & Color Depth:</span>
+              <span class="leak-param-value" id="leak-res">Scanning...</span>
+            </div>
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; System Timezone / UTC Offset:</span>
+              <span class="leak-param-value" id="leak-tz">Scanning...</span>
+            </div>
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; CPU Hardware Concurrency:</span>
+              <span class="leak-param-value" id="leak-cores">Scanning...</span>
+            </div>
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; GPU WebGL Renderer:</span>
+              <span class="leak-param-value" id="leak-gpu">Scanning...</span>
+            </div>
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; Platform & Architecture:</span>
+              <span class="leak-param-value" id="leak-platform">Scanning...</span>
+            </div>
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; Global Privacy Control (GPC / DNT):</span>
+              <span class="leak-param-value" id="leak-dnt">Scanning...</span>
+            </div>
+            <div class="leak-param-item">
+              <span class="leak-param-name">&gt; Cookie & LocalStorage Enabled:</span>
+              <span class="leak-param-value" id="leak-cookies">Scanning...</span>
+            </div>
+          </div>
+
+          <div class="audit-score-panel">
+            <div class="gauge-circle">
+              <div class="gauge-value" id="audit-score-val">84%</div>
+              <div class="gauge-label">EXPOSURE</div>
+            </div>
+            <h4 style="color: var(--neon-yellow); margin-bottom: 8px;">Unique Hardware Fingerprint Detected</h4>
+            <p class="audit-advice" id="audit-advice-text">
+              Your browser exposes exact GPU models, screen dimensions, and CPU core counts, allowing commercial trackers to identify you across domains without cookies.
+            </p>
+            <button class="btn-rerun-audit" id="btnRerunAudit">⚡ Re-Scan Client Parameters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS & GADGETS DIRECTORY -->
+  <section class="section-wrap" id="tools">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-badge">VETTED ARSENAL</div>
+        <h2 class="section-title">Privacy Gadgets & <span>Tools Directory</span></h2>
+        <p class="section-desc">Every tool below is open-source or community-vetted, privacy-respecting, and independently verified. Zero corporate bloatware.</p>
+      </div>
+
+      <div class="affiliate-notice-box">
+        <strong>AFFILIATE DISCLOSURE & ETHICS:</strong> Links marked with "[aff]" support this project at zero extra cost to you. We strictly list software and hardware that pass rigorous privacy and security benchmarks.
+      </div>
+
+      <!-- Controls: Search & Category Filters -->
+      <div class="tools-control-bar">
+        <div class="search-input-wrap">
+          <span class="search-icon">⚡</span>
+          <input type="text" id="toolSearchInput" class="search-tools-input" placeholder="Search by tool name, badge (e.g. E2EE, Tor, Hardware), or purpose...">
+        </div>
+
+        <div class="filters-wrap" id="categoryFilters">
+          <button class="filter-btn active" data-filter="all">All Arsenal</button>
+          <button class="filter-btn" data-filter="hardware">Hardware Security</button>
+          <button class="filter-btn" data-filter="browser">Hardened Browsers</button>
+          <button class="filter-btn" data-filter="search">Private Search</button>
+          <button class="filter-btn" data-filter="messaging">Encrypted Comms</button>
+          <button class="filter-btn" data-filter="email">Secure Email</button>
+          <button class="filter-btn" data-filter="vpn">VPN & Mesh</button>
+          <button class="filter-btn" data-filter="password">Password Vaults</button>
+          <button class="filter-btn" data-filter="os">Privacy OS</button>
+          <button class="filter-btn" data-filter="cloud">Cloud & Sync</button>
+          <button class="filter-btn" data-filter="dns">DNS & Ad-Blockers</button>
+          <button class="filter-btn" data-filter="crypto">Crypto & Cold Vaults</button>
+        </div>
+      </div>
+
+      <!-- Tools Grid -->
+      <div id="all-tools-container">
+
+        <!-- HARDWARE -->
+        <div class="cat-section-header" data-cat="hardware">
+          <span class="cat-section-icon">🔑</span>
+          <h3>Hardware Security & Physical Defense</h3>
+        </div>
+        <div class="tools-grid" data-cat="hardware">
+          <div class="tool-card" data-category="hardware" data-tags="yubikey 2fa hardware fido u2f physical key security">
+            <div class="tool-card-head">
+              <h4 class="tool-title">YubiKey 5 NFC</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-hw">HARDWARE 2FA</span>
+              <span class="badge-cyber badge-audit">PHISHING-PROOF</span>
+            </div>
+            <p class="tool-desc">The industry benchmark for physical authentication. Protects against credential stuffing and SIM-swapping. Tap via NFC or USB-C.</p>
+            <div class="tool-card-footer">
+              <a href="https://amzn.to/4l4LK7i" target="_blank" rel="noopener" class="tool-btn-link">Shop on Amazon →</a>
+              <span class="aff-tag">aff link</span>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="hardware crypto" data-tags="ledger cold storage wallet hardware crypto btc eth">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Ledger Hardware Wallet</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-hw">COLD STORAGE</span>
+              <span class="badge-cyber badge-e2ee">OFFLINE CHIP</span>
+            </div>
+            <p class="tool-desc">Keep private keys locked in a secure element away from internet-connected computers and browser malware.</p>
+            <div class="tool-card-footer">
+              <a href="https://amzn.to/4dw4Lxw" target="_blank" rel="noopener" class="tool-btn-link">Shop on Amazon →</a>
+              <span class="aff-tag">aff link</span>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="hardware" data-tags="screen protector privacy filter shoulder surfing visual">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Privacy Screen Filter</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-hw">VISUAL DEFENSE</span>
+            </div>
+            <p class="tool-desc">Micro-louver optical technology blocks side-angle visibility in cafes, flights, and public spaces, defeating shoulder surfers.</p>
+            <div class="tool-card-footer">
+              <a href="https://amzn.to/4sfcKne" target="_blank" rel="noopener" class="tool-btn-link">Browse on Amazon →</a>
+              <span class="aff-tag">aff link</span>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="hardware" data-tags="faraday bag rfid blocking signal rf cellular wifi bluetooth">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Mission Darkness Faraday Bag</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-hw">RF SHIELD</span>
+              <span class="badge-cyber badge-audit">MIL-SPEC</span>
+            </div>
+            <p class="tool-desc">Blocks all cellular, GPS, RFID, Wi-Fi, and Bluetooth signals to eliminate remote geolocation tracking and zero-click exploits.</p>
+            <div class="tool-card-footer">
+              <a href="https://mosequipment.com/" target="_blank" rel="noopener" class="tool-btn-link">Official Site →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BROWSERS -->
+        <div class="cat-section-header" data-cat="browser">
+          <span class="cat-section-icon">🌐</span>
+          <h3>Hardened Privacy Browsers</h3>
+        </div>
+        <div class="tools-grid" data-cat="browser">
+          <div class="tool-card" data-category="browser" data-tags="librewolf firefox hardened open source anti tracking telemetry stripped">
+            <div class="tool-card-head">
+              <h4 class="tool-title">LibreWolf</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">OPEN SOURCE</span>
+              <span class="badge-cyber badge-audit">ZERO TELEMETRY</span>
+            </div>
+            <p class="tool-desc">A hardened Firefox fork with Google/Mozilla telemetry stripped out, anti-fingerprinting enabled by default, and uBlock Origin pre-bundled.</p>
+            <div class="tool-card-footer">
+              <a href="https://librewolf.net/" target="_blank" rel="noopener" class="tool-btn-link">Get LibreWolf →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="browser" data-tags="tor browser onion routing anonymity dark web proxy">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Tor Browser</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-tor">TOR NETWORK</span>
+              <span class="badge-cyber badge-audit">MAX ANONYMITY</span>
+            </div>
+            <p class="tool-desc">Routes traffic across three encrypted volunteer nodes, completely masking your real IP and standardizing your browser fingerprint.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.torproject.org/" target="_blank" rel="noopener" class="tool-btn-link">Download Tor →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="browser" data-tags="brave browser chromium shield ad blocker tor web3">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Brave Browser</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">CHROMIUM FORK</span>
+              <span class="badge-cyber badge-e2ee">SHIELDS ACTIVE</span>
+            </div>
+            <p class="tool-desc">Fast Chromium-based browser with native tracker blocking, script shields, built-in Tor tabs, and zero Google telemetry.</p>
+            <div class="tool-card-footer">
+              <a href="https://brave.com/" target="_blank" rel="noopener" class="tool-btn-link">Download Brave →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="browser" data-tags="mullvad browser privacy vpn anti fingerprinting">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Mullvad Browser</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">TOR-ENGINE HARDENED</span>
+            </div>
+            <p class="tool-desc">Developed with the Tor Project to bring Tor-level anti-fingerprinting defenses to everyday non-Tor browsing with any VPN.</p>
+            <div class="tool-card-footer">
+              <a href="https://mullvad.net/en/browser" target="_blank" rel="noopener" class="tool-btn-link">Get Mullvad Browser →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="cat-section-header" data-cat="search">
+          <span class="cat-section-icon">🔍</span>
+          <h3>Private Search Engines</h3>
+        </div>
+        <div class="tools-grid" data-cat="search">
+          <div class="tool-card" data-category="search" data-tags="searxng metasearch self hosted open source search">
+            <div class="tool-card-head">
+              <h4 class="tool-title">SearXNG</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">SELF-HOSTABLE</span>
+              <span class="badge-cyber badge-audit">METASEARCH</span>
+            </div>
+            <p class="tool-desc">Open-source metasearch engine aggregating queries from over 70 sources without logging IP addresses or building search profiling dossiers.</p>
+            <div class="tool-card-footer">
+              <a href="https://github.com/searxng/searxng" target="_blank" rel="noopener" class="tool-btn-link">View on GitHub →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="search" data-tags="brave search independent index no tracking">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Brave Search</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">INDEPENDENT INDEX</span>
+            </div>
+            <p class="tool-desc">Built from its own independent web index rather than relying on Google or Bing APIs. 100% private and transparent ranking.</p>
+            <div class="tool-card-footer">
+              <a href="https://search.brave.com/" target="_blank" rel="noopener" class="tool-btn-link">Search Privately →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="search" data-tags="kagi search paid no ads customer not product">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Kagi Search</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-audit">ZERO ADS / NO DATA</span>
+            </div>
+            <p class="tool-desc">Premium subscription-based search engine. Because you pay directly, you are the customer rather than the advertising product.</p>
+            <div class="tool-card-footer">
+              <a href="https://kagi.com/" target="_blank" rel="noopener" class="tool-btn-link">Explore Kagi →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="search" data-tags="duckduckgo ddg search engine private">
+            <div class="tool-card-head">
+              <h4 class="tool-title">DuckDuckGo</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">NO PROFILING</span>
+            </div>
+            <p class="tool-desc">The most accessible zero-profiling search engine. Delivers clean results without behavioral tracking or search history storage.</p>
+            <div class="tool-card-footer">
+              <a href="https://duckduckgo.com/" target="_blank" rel="noopener" class="tool-btn-link">Go to DuckDuckGo →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- MESSAGING -->
+        <div class="cat-section-header" data-cat="messaging">
+          <span class="cat-section-icon">💬</span>
+          <h3>Encrypted Communications & Chat</h3>
+        </div>
+        <div class="tools-grid" data-cat="messaging">
+          <div class="tool-card" data-category="messaging" data-tags="signal messenger e2ee open source gold standard chat">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Signal Messenger</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-e2ee">SIGNAL PROTOCOL</span>
+              <span class="badge-cyber badge-oss">AUDITED</span>
+            </div>
+            <p class="tool-desc">The cryptographic gold standard. Non-profit organization, peer-reviewed encryption, zero metadata retention, and open-source clients.</p>
+            <div class="tool-card-footer">
+              <a href="https://signal.org/" target="_blank" rel="noopener" class="tool-btn-link">Get Signal →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="messaging" data-tags="session messenger onion routing no phone number anonymous">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Session</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-tor">ONION ROUTED</span>
+              <span class="badge-cyber badge-audit">NO PHONE NEEDED</span>
+            </div>
+            <p class="tool-desc">Decentralized, anonymous messenger requiring zero phone numbers or emails. Uses onion routing across a decentralized node network.</p>
+            <div class="tool-card-footer">
+              <a href="https://getsession.org/" target="_blank" rel="noopener" class="tool-btn-link">Get Session →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="messaging" data-tags="simplex chat metadata free zero user ids e2ee">
+            <div class="tool-card-head">
+              <h4 class="tool-title">SimpleX Chat</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-e2ee">ZERO USER IDs</span>
+              <span class="badge-cyber badge-oss">NO PROFILES</span>
+            </div>
+            <p class="tool-desc">First messaging network operating without user identifiers or phone numbers, eliminating metadata correlation completely.</p>
+            <div class="tool-card-footer">
+              <a href="https://simplex.chat/" target="_blank" rel="noopener" class="tool-btn-link">Get SimpleX →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="messaging" data-tags="element matrix decentralized federated chat e2ee">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Element / Matrix</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">FEDERATED</span>
+              <span class="badge-cyber badge-e2ee">SELF-HOSTABLE</span>
+            </div>
+            <p class="tool-desc">Decentralized, federated communication standard. Host your own homeserver so you own and govern your chat infrastructure.</p>
+            <div class="tool-card-footer">
+              <a href="https://element.io/" target="_blank" rel="noopener" class="tool-btn-link">Get Element →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- EMAIL & ALIASES -->
+        <div class="cat-section-header" data-cat="email">
+          <span class="cat-section-icon">✉️</span>
+          <h3>Encrypted Email & Alias Shielding</h3>
+        </div>
+        <div class="tools-grid" data-cat="email">
+          <div class="tool-card" data-category="email" data-tags="proton mail encrypted swiss zero access email">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Proton Mail</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-e2ee">ZERO ACCESS</span>
+              <span class="badge-cyber badge-audit">SWISS JURISDICTION</span>
+            </div>
+            <p class="tool-desc">End-to-end encrypted email based in Switzerland. Zero-access architecture ensures even Proton cannot decrypt your inbox.</p>
+            <div class="tool-card-footer">
+              <a href="https://account.proton.me/mail" target="_blank" rel="noopener" class="tool-btn-link">Get Proton Mail →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="email" data-tags="tuta tutanota encrypted email open source germany">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Tuta (Tutanota)</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">OPEN SOURCE</span>
+              <span class="badge-cyber badge-e2ee">PQ ENCRYPTED</span>
+            </div>
+            <p class="tool-desc">Post-quantum encrypted email, calendar, and contacts with zero Google push dependencies and strong no-logging commitments.</p>
+            <div class="tool-card-footer">
+              <a href="https://tuta.com/" target="_blank" rel="noopener" class="tool-btn-link">Get Tuta →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="email" data-tags="simplelogin email alias masking privacy proton">
+            <div class="tool-card-head">
+              <h4 class="tool-title">SimpleLogin</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">ALIAS SHIELD</span>
+              <span class="badge-cyber badge-audit">ANTI-PHISHING</span>
+            </div>
+            <p class="tool-desc">Create burner email aliases on the fly for every site. Keeps your real address hidden and cuts off spammers with a single toggle.</p>
+            <div class="tool-card-footer">
+              <a href="https://simplelogin.io/" target="_blank" rel="noopener" class="tool-btn-link">Get SimpleLogin →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- VPN & NETWORK -->
+        <div class="cat-section-header" data-cat="vpn">
+          <span class="cat-section-icon">🛡️</span>
+          <h3>VPN, WireGuard & Decentralized Networks</h3>
+        </div>
+        <div class="tools-grid" data-cat="vpn">
+          <div class="tool-card" data-category="vpn" data-tags="mullvad vpn no logs wireguard cash payments audited">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Mullvad VPN</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-audit">NO ACCOUNTS</span>
+              <span class="badge-cyber badge-oss">CASH ACCEPTED</span>
+            </div>
+            <p class="tool-desc">Generates random account numbers with zero email requirements. Fully open-source client, WireGuard protocol, independently audited.</p>
+            <div class="tool-card-footer">
+              <a href="https://mullvad.net/" target="_blank" rel="noopener" class="tool-btn-link">Get Mullvad →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="vpn" data-tags="mysterium vpn decentralized dvpn residential nodes wireguard">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Mysterium VPN</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-tor">DECENTRALIZED</span>
+              <span class="badge-cyber badge-e2ee">WIREGUARD</span>
+            </div>
+            <p class="tool-desc">Decentralized VPN routing traffic through global residential peer nodes. Harder for firewalls and CDNs to identify and block.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.mysteriumvpn.com/" target="_blank" rel="noopener" class="tool-btn-link">Get Mysterium →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="vpn crypto" data-tags="myst nodes earn crypto bandwidth sharing node">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Myst Nodes</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-hw">NODE RUNNER</span>
+              <span class="badge-cyber badge-oss">EARN REWARDS</span>
+            </div>
+            <p class="tool-desc">Run a lightweight node to share unused internet bandwidth, powering censorship-resistant infrastructure while earning crypto rewards.</p>
+            <div class="tool-card-footer">
+              <a href="https://mystnodes.co/?referral_code=CShcPZo3nIaNVELh9ACc0HbBGPUx4ADZKEsOeg4S" target="_blank" rel="noopener" class="tool-btn-link">Run a Node →</a>
+              <span class="aff-tag">aff link</span>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="vpn" data-tags="wireguard protocol fast modern lean vpn vps">
+            <div class="tool-card-head">
+              <h4 class="tool-title">WireGuard</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">KERNEL LEVEL</span>
+              <span class="badge-cyber badge-audit">BLAZING FAST</span>
+            </div>
+            <p class="tool-desc">Modern, ultra-fast cryptographic network tunnel. Spin up your own self-hosted VPN server in minutes on any VPS.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.wireguard.com/" target="_blank" rel="noopener" class="tool-btn-link">Explore WireGuard →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSWORD VAULTS -->
+        <div class="cat-section-header" data-cat="password">
+          <span class="cat-section-icon">🗝️</span>
+          <h3>Password Managers & 2FA Tokens</h3>
+        </div>
+        <div class="tools-grid" data-cat="password">
+          <div class="tool-card" data-category="password" data-tags="bitwarden password manager open source sync self host">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Bitwarden</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">OPEN SOURCE</span>
+              <span class="badge-cyber badge-e2ee">ZERO KNOWLEDGE</span>
+            </div>
+            <p class="tool-desc">Audited open-source password manager with cross-device sync and self-hosting options (Vaultwarden compatible).</p>
+            <div class="tool-card-footer">
+              <a href="https://bitwarden.com/" target="_blank" rel="noopener" class="tool-btn-link">Get Bitwarden →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="password" data-tags="keepassxc offline vault local encrypted password manager">
+            <div class="tool-card-head">
+              <h4 class="tool-title">KeePassXC</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">100% OFFLINE</span>
+              <span class="badge-cyber badge-hw">YUBIKEY READY</span>
+            </div>
+            <p class="tool-desc">Air-gapped offline password vault. Your database never touches external cloud servers unless you manually sync it.</p>
+            <div class="tool-card-footer">
+              <a href="https://keepassxc.org/" target="_blank" rel="noopener" class="tool-btn-link">Get KeePassXC →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="password" data-tags="proton pass password manager 2fa alias email">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Proton Pass</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-e2ee">E2EE VAULT</span>
+              <span class="badge-cyber badge-audit">BUILT-IN ALIASES</span>
+            </div>
+            <p class="tool-desc">Integrated encrypted password manager and 2FA authenticator with native email alias generation to shield logins.</p>
+            <div class="tool-card-footer">
+              <a href="https://proton.me/pass" target="_blank" rel="noopener" class="tool-btn-link">Get Proton Pass →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIVACY OS -->
+        <div class="cat-section-header" data-cat="os">
+          <span class="cat-section-icon">🖥️</span>
+          <h3>Privacy Operating Systems & Compartmentalization</h3>
+        </div>
+        <div class="tools-grid" data-cat="os">
+          <div class="tool-card" data-category="os" data-tags="tails os amnesic live usb tor anon system">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Tails OS</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-tor">AMNESIC USB</span>
+              <span class="badge-cyber badge-audit">ZERO FOOTPRINT</span>
+            </div>
+            <p class="tool-desc">Bootable live Linux OS that routes 100% of traffic through Tor. Leaves zero forensic trace on hard drives upon shutdown.</p>
+            <div class="tool-card-footer">
+              <a href="https://tails.boum.org/" target="_blank" rel="noopener" class="tool-btn-link">Download Tails →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="os" data-tags="qubes os compartmentalization xen hypervisor security vm">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Qubes OS</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-audit">REASONABLY SECURE</span>
+              <span class="badge-cyber badge-hw">ISOLATED VMs</span>
+            </div>
+            <p class="tool-desc">Security by compartmentalization. Isolates networking, storage, and individual applications into separate lightweight virtual domains.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.qubes-os.org/" target="_blank" rel="noopener" class="tool-btn-link">Get Qubes OS →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="os" data-tags="grapheneos hardened android google pixel degoogled">
+            <div class="tool-card-head">
+              <h4 class="tool-title">GrapheneOS</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">HARDENED ANDROID</span>
+              <span class="badge-cyber badge-audit">ZERO TELEMETRY</span>
+            </div>
+            <p class="tool-desc">Hardened open-source mobile OS for Pixel phones. Strips Google telemetry, hardens kernel memory, and sandboxes Google services.</p>
+            <div class="tool-card-footer">
+              <a href="https://grapheneos.org/" target="_blank" rel="noopener" class="tool-btn-link">Explore GrapheneOS →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLOUD & SYNC -->
+        <div class="cat-section-header" data-cat="cloud">
+          <span class="cat-section-icon">☁️</span>
+          <h3>Decentralized Storage & File Synchronization</h3>
+        </div>
+        <div class="tools-grid" data-cat="cloud">
+          <div class="tool-card" data-category="cloud" data-tags="nextcloud self hosted private cloud files calendar">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Nextcloud</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">SELF HOSTED</span>
+              <span class="badge-cyber badge-e2ee">FULL SOVEREIGNTY</span>
+            </div>
+            <p class="tool-desc">Complete sovereign replacement for Google Drive, Dropbox, and Office. Store your data on your own private hardware.</p>
+            <div class="tool-card-footer">
+              <a href="https://nextcloud.com/" target="_blank" rel="noopener" class="tool-btn-link">Get Nextcloud →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="cloud" data-tags="syncthing p2p direct sync peer to peer encrypted">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Syncthing</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">P2P ENCRYPTED</span>
+              <span class="badge-cyber badge-e2ee">NO CLOUD</span>
+            </div>
+            <p class="tool-desc">Continuous peer-to-peer file synchronization between your devices. No central servers or intermediaries touch your files.</p>
+            <div class="tool-card-footer">
+              <a href="https://syncthing.net/" target="_blank" rel="noopener" class="tool-btn-link">Get Syncthing →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="cloud" data-tags="cryptomator client side encryption cloud storage box">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Cryptomator</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">CLIENT-SIDE AES</span>
+              <span class="badge-cyber badge-e2ee">ZERO KNOWLEDGE</span>
+            </div>
+            <p class="tool-desc">Encrypts files locally before uploading to any mainstream cloud provider (Google Drive, iCloud, OneDrive). Zero knowledge.</p>
+            <div class="tool-card-footer">
+              <a href="https://cryptomator.org/" target="_blank" rel="noopener" class="tool-btn-link">Get Cryptomator →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- DNS & AD BLOCKERS -->
+        <div class="cat-section-header" data-cat="dns">
+          <span class="cat-section-icon">🚫</span>
+          <h3>Network DNS Shields & Tracker Sinks</h3>
+        </div>
+        <div class="tools-grid" data-cat="dns">
+          <div class="tool-card" data-category="dns" data-tags="pihole dns ad blocker raspberry pi network wide sinkhole">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Pi-hole</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">NETWORK SINKHOLE</span>
+              <span class="badge-cyber badge-hw">HARDWARE READY</span>
+            </div>
+            <p class="tool-desc">Network-wide ad and telemetry blocking via DNS. Protects smart TVs, IoT devices, and phones without needing client app installs.</p>
+            <div class="tool-card-footer">
+              <a href="https://pi-hole.net/" target="_blank" rel="noopener" class="tool-btn-link">Set Up Pi-hole →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="dns" data-tags="nextdns cloud dns doh dot ad block tracker shield">
+            <div class="tool-card-head">
+              <h4 class="tool-title">NextDNS</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-audit">CLOUD SINKHOLE</span>
+              <span class="badge-cyber badge-e2ee">DOH / DOT</span>
+            </div>
+            <p class="tool-desc">Cloud-based DNS firewall blocking trackers and malware on mobile devices anywhere in the world using DoH / DoT encryption.</p>
+            <div class="tool-card-footer">
+              <a href="https://nextdns.io/" target="_blank" rel="noopener" class="tool-btn-link">Get NextDNS →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="dns" data-tags="ublock origin content blocker adblock extension">
+            <div class="tool-card-head">
+              <h4 class="tool-title">uBlock Origin</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">ESSENTIAL SHIELD</span>
+            </div>
+            <p class="tool-desc">Efficient wide-spectrum content blocker. Neutralizes invasive tracking scripts, malicious redirects, and ad networks.</p>
+            <div class="tool-card-footer">
+              <a href="https://ublockorigin.com/" target="_blank" rel="noopener" class="tool-btn-link">Get Extension →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRYPTO & FINANCIAL SOVEREIGNTY -->
+        <div class="cat-section-header" data-cat="crypto">
+          <span class="cat-section-icon">🔐</span>
+          <h3>Privacy Crypto & Financial Anonymity</h3>
+        </div>
+        <div class="tools-grid" data-cat="crypto">
+          <div class="tool-card" data-category="crypto" data-tags="monero xmr privacy coin untraceable fungible crypto">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Monero (XMR)</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-audit">UNTRACEABLE</span>
+              <span class="badge-cyber badge-oss">STEALTH ADDRESSES</span>
+            </div>
+            <p class="tool-desc">The leading privacy cryptocurrency. Ring signatures, zero-knowledge proofs, and stealth addresses ensure all transactions are private by default.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.getmonero.org/" target="_blank" rel="noopener" class="tool-btn-link">GetMonero.org →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="crypto" data-tags="veracrypt disk encryption usb vault security">
+            <div class="tool-card-head">
+              <h4 class="tool-title">VeraCrypt</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">VOLUME CIPHER</span>
+              <span class="badge-cyber badge-audit">PLAUSIBLE DENIAL</span>
+            </div>
+            <p class="tool-desc">Open-source on-the-fly disk encryption. Create encrypted containers on USB drives to secure seed phrases, keys, and confidential files.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.veracrypt.fr/" target="_blank" rel="noopener" class="tool-btn-link">Download VeraCrypt →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="crypto" data-tags="midnight network privacy smart contracts zero knowledge">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Midnight Network</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-e2ee">CONFIDENTIAL DApps</span>
+            </div>
+            <p class="tool-desc">Data-protection focused blockchain for building zero-knowledge smart contracts and privacy-preserving Web3 applications.</p>
+            <div class="tool-card-footer">
+              <a href="https://midnight.network/" target="_blank" rel="noopener" class="tool-btn-link">Midnight Network →</a>
+            </div>
+          </div>
+
+          <div class="tool-card" data-category="crypto" data-tags="coinomi wallet multi coin non custodial mobile">
+            <div class="tool-card-head">
+              <h4 class="tool-title">Coinomi Wallet</h4>
+            </div>
+            <div class="tool-badges-row">
+              <span class="badge-cyber badge-oss">NON-CUSTODIAL</span>
+            </div>
+            <p class="tool-desc">Multi-chain non-custodial mobile wallet supporting hundreds of assets. Pair with VeraCrypt for an improvised cold-storage vault.</p>
+            <div class="tool-card-footer">
+              <a href="https://www.coinomi.com/" target="_blank" rel="noopener" class="tool-btn-link">Coinomi.com →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FEATURED GUIDE CALLOUT -->
+      <div class="featured-guide-box" id="guide">
+        <div class="guide-icon">📖</div>
+        <h3>Guide: Build an Encrypted USB Crypto Vault</h3>
+        <p>A step-by-step masterclass on turning any ordinary USB flash drive into a military-grade encrypted crypto and cold-storage vault using VeraCrypt and Coinomi.</p>
+        <a href="https://www.bulbapp.io/p/fd94544b-7ad7-42fc-ba43-da4237f830e7/turn-any-usb-stick-into-a-crypto-vault-veracrypt-coinomi-and-the-truth-about-coldstorage" target="_blank" rel="noopener" class="guide-cta-btn">Read the Masterclass Guide →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY ESCALATION ROADMAP -->
+  <section class="section-wrap" id="roadmap">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="section-badge">ACTION PLAN</div>
+        <h2 class="section-title">The 3-Tier <span>Defense Roadmap</span></h2>
+        <p class="section-desc">Don't try to change everything overnight. Upgrade your digital defense step by step based on your threat model.</p>
+      </div>
+
+      <div class="roadmap-grid">
+        <!-- TIER 1 -->
+        <div class="roadmap-tier-card tier-1">
+          <div class="tier-badge">TIER 01: 15-MINUTE SHIELD</div>
+          <h4>Essential Everyday Hygiene</h4>
+          <p>Quick, frictionless improvements that eliminate 80% of automated commercial ad trackers and credential leaks.</p>
+          <ul class="tier-checklist">
+            <li><span class="tier-check-icon">✔</span> Install LibreWolf or Brave with uBlock Origin</li>
+            <li><span class="tier-check-icon">✔</span> Switch default search to Brave Search or DuckDuckGo</li>
+            <li><span class="tier-check-icon">✔</span> Migrate passwords to Bitwarden or KeePassXC</li>
+            <li><span class="tier-check-icon">✔</span> Move sensitive messages to Signal Messenger</li>
+          </ul>
+        </div>
+
+        <!-- TIER 2 -->
+        <div class="roadmap-tier-card tier-2">
+          <div class="tier-badge">TIER 02: ADVANCED OPERATOR</div>
+          <h4>Systematic Tracker Erasure</h4>
+          <p>For individuals taking active sovereignty over their network telemetry, email addresses, and home devices.</p>
+          <ul class="tier-checklist">
+            <li><span class="tier-check-icon">✔</span> Route mobile & home DNS through NextDNS or Pi-hole</li>
+            <li><span class="tier-check-icon">✔</span> Use SimpleLogin email masks for all online signups</li>
+            <li><span class="tier-check-icon">✔</span> Connect via Mullvad VPN with WireGuard protocol</li>
+            <li><span class="tier-check-icon">✔</span> Enforce hardware 2FA keys (YubiKey 5 NFC)</li>
+          </ul>
+        </div>
+
+        <!-- TIER 3 -->
+        <div class="roadmap-tier-card tier-3">
+          <div class="tier-badge">TIER 03: GHOST PROTOCOL</div>
+          <h4>Maximum Paranoia & Air-Gaps</h4>
+          <p>For activists, whistleblowers, and crypto operators facing advanced state-level or targeted surveillance.</p>
+          <ul class="tier-checklist">
+            <li><span class="tier-check-icon">✔</span> Boot amnesic Tails OS live USB for sensitive work</li>
+            <li><span class="tier-check-icon">✔</span> Run GrapheneOS with sandboxed Google Play on Pixel</li>
+            <li><span class="tier-check-icon">✔</span> Store financial secrets in air-gapped VeraCrypt vaults</li>
+            <li><span class="tier-check-icon">✔</span> Transact strictly in Monero (XMR) over Tor</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT HATTY SECTION -->
+  <section class="section-wrap" id="about">
+    <div class="container">
+      <div class="about-box">
+        <div class="hatty-avatar">🎩</div>
+        <h2>Curated by HattyHats</h2>
+        <p>
+          Creator, security researcher, and Web3 builder covering artificial intelligence, cryptography, privacy, and digital sovereignty.
+        </p>
+        <p>
+          Privacy Gadgets is an uncompromised resource directory. We test and vet tools for real-world resilience — not whatever affiliate pays the highest payout. If a tool is listed here, it earned its place in our active arsenal.
+        </p>
+        <div class="creator-links-wrap">
+          <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener" class="creator-pill-link">Earn With Hatty</a>
+          <a href="https://x.com/hatty_hats" target="_blank" rel="noopener" class="creator-pill-link">X (Twitter)</a>
+          <a href="https://www.youtube.com/@hattyhats0" target="_blank" rel="noopener" class="creator-pill-link">YouTube</a>
+          <a href="https://www.publish0x.com/@HattyHats" target="_blank" rel="noopener" class="creator-pill-link">Publish0x</a>
+          <a href="https://www.bulbapp.io/u/7E8fsJ3Wy1onNm8SPtvypAuvzw5rMnumAC6UEChFdTVY/hattyhats" target="_blank" rel="noopener" class="creator-pill-link">BULB Blog</a>
+          <a href="https://learn-with-hatty.printify.me/" target="_blank" rel="noopener" class="creator-pill-link">Official Merch</a>
+          <a href="https://cash.app/$hattyhatss" target="_blank" rel="noopener" class="creator-pill-link">Support via Cash App</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Privacy-Gadgets Hub by HattyHats. Privacy is a Right, Not a Feature.</p>
+    <div class="footer-links">
+      <a href="https://www.earnwithhatty.com" target="_blank" rel="noopener">Earn With Hatty</a>
+      <a href="https://x.com/hatty_hats" target="_blank" rel="noopener">X (Twitter)</a>
+      <a href="https://www.youtube.com/@hattyhats0" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.publish0x.com/@HattyHats" target="_blank" rel="noopener">Publish0x</a>
+      <a href="https://www.bulbapp.io/u/7E8fsJ3Wy1onNm8SPtvypAuvzw5rMnumAC6UEChFdTVY/hattyhats" target="_blank" rel="noopener">BULB</a>
+      <a href="https://www.bulbapp.io/p/fd94544b-7ad7-42fc-ba43-da4237f830e7/turn-any-usb-stick-into-a-crypto-vault-veracrypt-coinomi-and-the-truth-about-coldstorage" target="_blank" rel="noopener">Crypto Vault Guide</a>
+    </div>
+    <p style="margin-top: 10px; font-size: 0.72rem; color: var(--text-dim);">
+      All tools vetted for independent cryptographic validity. Some links are affiliate links which support independent security testing at zero extra cost to you.
+    </p>
+  </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="btn-back-top" id="btnBackTop" title="Back to Top">▲</button>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    (function() {
+      'use strict';
+
+      /* ==========================================================
+         1. MATRIX CODE RAIN CANVAS
+         ========================================================== */
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      let chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF$#@%&*';
+      let fontSize = 14;
+      let columns = 0;
+      let drops = [];
+
+      function initMatrix() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        columns = Math.floor(canvas.width / fontSize);
+        drops = [];
+        for (let i = 0; i < columns; i++) {
+          drops[i] = Math.random() * -100;
+        }
       }
-    }
-    step();
-  }
 
-  var TITLE_FRAMES = [
-    ['4px 0 #ff0000,-4px 0 #00ffff,0 0 40px #f0a500',   'translateX(-6px) skewX(-3deg)'],
-    ['-5px 0 #00ffff,5px 0 #ff0000,0 0 20px #fff',       'translateX(6px) skewX(2deg)'  ],
-    ['3px 0 #ff00ff,-3px 0 #00ff00,0 0 30px #f0a500',    'translateX(-3px)'             ],
-    ['-2px 0 #ff0000,2px 0 #00ffff,0 0 40px #f0a50080',  'translateX(4px) skewX(-1deg)' ],
-    ['0 0 30px #f0a50080,0 0 60px #f0a50040,0 2px 4px #000','translateY(0)'             ]
-  ];
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(3, 4, 8, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  var HATTY_FRAMES = [
-    ['3px 0 #ff0000,-3px 0 #00ffff,0 0 14px #f0a500',   'translateX(-5px) skewX(-2deg)'],
-    ['-4px 0 #00ffff,4px 0 #ff0000,0 0 10px #fff',      'translateX(5px)'              ],
-    ['2px 0 #ff00ff,-2px 0 #00ff00,0 0 12px #f0a500',   'translateX(-2px) skewX(1deg)' ],
-    ['none',                                              'translateX(0)'                ]
-  ];
+        ctx.fillStyle = '#00ff66';
+        ctx.font = fontSize + 'px monospace';
 
-  /* Title glitches every ~5s starting at 1.8s */
-  var titleTO;
-  function loopTitle() {
-    glitch(title, TITLE_FRAMES, 65, null);
-    titleTO = setTimeout(loopTitle, 4500 + Math.random() * 1500);
-  }
-  setTimeout(loopTitle, 1800);
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars.charAt(Math.floor(Math.random() * chars.length));
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
 
-  /* HattyHats glitches every ~2s starting at 3.4s */
-  var hattyTO;
-  function loopHatty() {
-    glitch(hatty, HATTY_FRAMES, 55, null);
-    hattyTO = setTimeout(loopHatty, 1800 + Math.random() * 700);
-  }
-  setTimeout(loopHatty, 3400);
+          // Occasionally draw a cyan or white highlight head
+          if (Math.random() > 0.92) {
+            ctx.fillStyle = '#00f0ff';
+          } else {
+            ctx.fillStyle = '#00ff66';
+          }
 
-  /* Enter button */
-  enterBtn.addEventListener('click', function() {
-    clearTimeout(titleTO);
-    clearTimeout(hattyTO);
-    splash.style.transition = 'opacity 0.6s ease';
-    splash.style.opacity = '0';
-    splash.style.pointerEvents = 'none';
-    setTimeout(function() { splash.style.display = 'none'; }, 650);
-    startLogoGlitch();
-  });
+          ctx.fillText(text, x, y);
 
-  /* ========================================
-     HEADER LOGO GLITCH
-     ======================================== */
-  var logo = document.getElementById('headerLogo');
-
-  function startLogoGlitch() {
-    function doLogoGlitch() {
-      logo.classList.add('glitching');
-      setTimeout(function() { logo.classList.remove('glitching'); }, 350);
-      setTimeout(doLogoGlitch, 5000 + Math.random() * 2000);
-    }
-    setTimeout(doLogoGlitch, 1000);
-  }
-
-  /* ========================================
-     HERO SCROLL REVEAL
-     ======================================== */
-  var heroText = document.getElementById('heroText');
-  function checkHero() {
-    if (heroText.getBoundingClientRect().top < window.innerHeight * 0.85) {
-      heroText.classList.add('visible');
-      window.removeEventListener('scroll', checkHero);
-    }
-  }
-  window.addEventListener('scroll', checkHero, { passive: true });
-
-  /* ========================================
-     FILTER BUTTONS
-     ======================================== */
-  var filterBtns = document.querySelectorAll('.filter-btn');
-  var catHeaders  = document.querySelectorAll('.cat-header');
-  var toolGrids   = document.querySelectorAll('.tools-grid');
-
-  filterBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      filterBtns.forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var f = btn.dataset.filter;
-      if (f === 'all') {
-        catHeaders.forEach(function(h) { h.style.display = ''; });
-        toolGrids.forEach(function(g) {
-          g.style.display = '';
-          g.querySelectorAll('.tool-card').forEach(function(c) { c.style.display = ''; });
-        });
-        return;
+          if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
       }
-      catHeaders.forEach(function(h) { h.style.display = h.dataset.cat === f ? '' : 'none'; });
-      toolGrids.forEach(function(g) {
-        var vis = 0;
-        g.querySelectorAll('.tool-card').forEach(function(c) {
-          var show = (c.dataset.categories || '').includes(f);
-          c.style.display = show ? '' : 'none';
-          if (show) vis++;
-        });
-        g.style.display = vis ? '' : 'none';
+
+      initMatrix();
+      window.addEventListener('resize', initMatrix, { passive: true });
+      setInterval(drawMatrix, 45);
+
+      /* ==========================================================
+         2. AUTOMATED BOOT SPLASH SCREEN WITH PROGRESS & SKIP
+         ========================================================== */
+      const splashScreen = document.getElementById('splash-screen');
+      const splashProgressBar = document.getElementById('splash-progress-bar');
+      const splashPercentText = document.getElementById('splash-percent-text');
+      const splashStatusText = document.getElementById('splash-status-text');
+      const splashLogContainer = document.getElementById('splash-log-container');
+      const splashSkipTrigger = document.getElementById('splash-skip-trigger');
+
+      const bootSteps = [
+        { progress: 20, text: 'INIT ZERO-KNOWLEDGE PROTOCOLS...', log: '<span class="tag-ok">[OK]</span> Cryptographic entropy initialized.' },
+        { progress: 45, text: 'SEVERING BIG TECH TELEMETRY...', log: '<span class="tag-alert">[BLOCKED]</span> 147 Surveillance endpoints dropped.' },
+        { progress: 75, text: 'SCRAMBLING BROWSER FINGERPRINT...', log: '<span class="tag-ok">[DONE]</span> Canvas & WebGL canvas noise active.' },
+        { progress: 95, text: 'ESTABLISHING ENCRYPTED TUNNEL...', log: '<span class="tag-cyan">[SECURE]</span> Onion routing handshake verified.' },
+        { progress: 100, text: 'SYSTEM ARMED. WELCOME TO PRIVACY GADGETS.', log: '<span class="tag-ok">[READY]</span> Entering Privacy Gadgets Hub.' }
+      ];
+
+      let currentStep = 0;
+      let splashDismissed = false;
+
+      function dismissSplash() {
+        if (splashDismissed) return;
+        splashDismissed = true;
+        splashScreen.classList.add('splash-hidden');
+        setTimeout(() => {
+          splashScreen.style.display = 'none';
+        }, 750);
+      }
+
+      function runBootSequence() {
+        if (currentStep >= bootSteps.length) {
+          setTimeout(dismissSplash, 400);
+          return;
+        }
+
+        const step = bootSteps[currentStep];
+        splashProgressBar.style.width = step.progress + '%';
+        splashPercentText.textContent = step.progress + '%';
+        splashStatusText.textContent = step.text;
+
+        const line = document.createElement('div');
+        line.className = 'splash-log-line';
+        line.innerHTML = `<span class="tag-cyan">&gt;</span> ${step.log}`;
+        splashLogContainer.appendChild(line);
+
+        currentStep++;
+        setTimeout(runBootSequence, 500);
+      }
+
+      // Start boot loader
+      setTimeout(runBootSequence, 200);
+
+      // Fast skip on click or key press
+      splashSkipTrigger.addEventListener('click', dismissSplash);
+      splashScreen.addEventListener('click', dismissSplash);
+      window.addEventListener('keydown', (e) => {
+        if (!splashDismissed) dismissSplash();
+      }, { once: true });
+
+      /* ==========================================================
+         3. LIVE TOP HUD CLOCK
+         ========================================================== */
+      const hudClock = document.getElementById('hud-clock');
+      function updateClock() {
+        const now = new Date();
+        hudClock.textContent = now.toUTCString().slice(17, 25) + ' UTC';
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      /* ==========================================================
+         4. ECOSYSTEM DROPDOWN MENU
+         ========================================================== */
+      const ecosystemBtn = document.getElementById('ecosystemBtn');
+      const ecosystemMenu = document.getElementById('ecosystemMenu');
+
+      ecosystemBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = ecosystemMenu.classList.toggle('open');
+        ecosystemBtn.classList.toggle('open', isOpen);
       });
-    });
-  });
 
-  /* ========================================
-     NAV DROPDOWN
-     ======================================== */
-  var navToggle   = document.getElementById('navToggle');
-  var navDropdown = document.getElementById('navDropdown');
+      document.addEventListener('click', () => {
+        ecosystemMenu.classList.remove('open');
+        ecosystemBtn.classList.remove('open');
+      });
 
-  navToggle.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var isOpen = navDropdown.classList.toggle('open');
-    navToggle.classList.toggle('open', isOpen);
-  });
+      ecosystemMenu.addEventListener('click', (e) => e.stopPropagation());
 
-  // Close when clicking outside
-  document.addEventListener('click', function() {
-    navDropdown.classList.remove('open');
-    navToggle.classList.remove('open');
-  });
+      /* ==========================================================
+         5. INTERACTIVE LIVE BROWSER LEAK & FINGERPRINT AUDIT
+         ========================================================== */
+      function runBrowserAudit() {
+        // Resolution & Color Depth
+        const resEl = document.getElementById('leak-res');
+        resEl.textContent = `${window.screen.width}x${window.screen.height} (${window.screen.colorDepth}-bit)`;
 
-  // Prevent dropdown clicks from closing it
-  navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+        // Timezone
+        const tzEl = document.getElementById('leak-tz');
+        try {
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          const offset = -new Date().getTimezoneOffset() / 60;
+          tzEl.textContent = `${tz} (UTC${offset >= 0 ? '+' : ''}${offset})`;
+        } catch (e) {
+          tzEl.textContent = 'UTC-Offset Exposed';
+        }
 
-  /* ========================================
-     SMOOTH SCROLL
-     ======================================== */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      var t = document.querySelector(this.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
+        // Hardware Cores
+        const coresEl = document.getElementById('leak-cores');
+        coresEl.textContent = `${navigator.hardwareConcurrency || 'Unknown'} Logical Cores`;
 
-})();
-</script>
+        // GPU WebGL
+        const gpuEl = document.getElementById('leak-gpu');
+        try {
+          const glCanvas = document.createElement('canvas');
+          const gl = glCanvas.getContext('webgl') || glCanvas.getContext('experimental-webgl');
+          if (gl) {
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            if (debugInfo) {
+              const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+              gpuEl.textContent = renderer || 'WebGL Active';
+            } else {
+              gpuEl.textContent = 'Generic WebGL Supported';
+            }
+          } else {
+            gpuEl.textContent = 'WebGL Disabled (Good!)';
+          }
+        } catch (e) {
+          gpuEl.textContent = 'Standard Graphics Driver';
+        }
+
+        // Platform
+        const platEl = document.getElementById('leak-platform');
+        platEl.textContent = `${navigator.platform || 'Unknown'} (${navigator.language || 'en-US'})`;
+
+        // DNT / GPC
+        const dntEl = document.getElementById('leak-dnt');
+        const dnt = navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+        dntEl.textContent = dnt ? 'Shield Enabled (DNT/GPC: 1)' : 'Not Enabled (Vulnerable)';
+        dntEl.style.color = dnt ? 'var(--neon-green)' : 'var(--neon-pink)';
+
+        // Cookies
+        const cookieEl = document.getElementById('leak-cookies');
+        cookieEl.textContent = navigator.cookieEnabled ? 'Enabled (Third-Party Trackable)' : 'Disabled';
+      }
+
+      runBrowserAudit();
+      const btnRerun = document.getElementById('btnRerunAudit');
+      if (btnRerun) {
+        btnRerun.addEventListener('click', () => {
+          btnRerun.textContent = 'Re-scanning...';
+          setTimeout(() => {
+            runBrowserAudit();
+            btnRerun.textContent = '⚡ Re-Scan Client Parameters';
+          }, 300);
+        });
+      }
+
+      /* ==========================================================
+         6. SEARCH & MULTI-TAG CATEGORY FILTERING
+         ========================================================== */
+      const searchInput = document.getElementById('toolSearchInput');
+      const filterBtns = document.querySelectorAll('#categoryFilters .filter-btn');
+      const toolCards = document.querySelectorAll('.tool-card');
+      const catHeaders = document.querySelectorAll('.cat-section-header');
+      const toolsGrids = document.querySelectorAll('.tools-grid');
+
+      let currentCategory = 'all';
+      let searchQuery = '';
+
+      function filterTools() {
+        const query = searchQuery.trim().toLowerCase();
+
+        toolCards.forEach(card => {
+          const category = card.dataset.category || '';
+          const tags = (card.dataset.tags || '').toLowerCase();
+          const title = (card.querySelector('.tool-title')?.textContent || '').toLowerCase();
+          const desc = (card.querySelector('.tool-desc')?.textContent || '').toLowerCase();
+
+          const matchesCategory = (currentCategory === 'all') || category.split(' ').includes(currentCategory);
+          const matchesSearch = !query || title.includes(query) || desc.includes(query) || tags.includes(query);
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Hide or show category header and parent grids based on visible cards
+        toolsGrids.forEach(grid => {
+          const cat = grid.dataset.cat;
+          const header = document.querySelector(`.cat-section-header[data-cat="${cat}"]`);
+          const visibleCards = grid.querySelectorAll('.tool-card:not([style*="display: none"])');
+
+          if (visibleCards.length > 0) {
+            grid.style.display = 'grid';
+            if (header) header.style.display = 'flex';
+          } else {
+            grid.style.display = 'none';
+            if (header) header.style.display = 'none';
+          }
+        });
+      }
+
+      // Filter Buttons Click
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCategory = btn.dataset.filter;
+          filterTools();
+        });
+      });
+
+      // Search Input
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        filterTools();
+      });
+
+      /* ==========================================================
+         7. BACK TO TOP BUTTON
+         ========================================================== */
+      const btnBackTop = document.getElementById('btnBackTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          btnBackTop.classList.add('visible');
+        } else {
+          btnBackTop.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      btnBackTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+    })();
+  </script>
 </body>
 </html>
